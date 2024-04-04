@@ -1,5 +1,3 @@
-# CBJS
+# Web Penetration Testing 
 
-Welcome to my Web Penetration Testing repository!
-
-This repository provides information about 12 common vulnerabilities written by CyberJutsu and my write-up while solving them. 
+This repository provides information about 8 white-boxes written by CyberJutsu and my write-up while solving them. 
