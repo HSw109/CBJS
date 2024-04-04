@@ -1,0 +1,648 @@
+01-Apr-2024 15:53:17.534 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.5.35
+01-Apr-2024 15:53:17.541 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Nov 3 2018 17:39:20 UTC
+01-Apr-2024 15:53:17.541 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.5.35.0
+01-Apr-2024 15:53:17.541 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+01-Apr-2024 15:53:17.541 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            6.5.11-linuxkit
+01-Apr-2024 15:53:17.541 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+01-Apr-2024 15:53:17.541 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /home/cbjs/jdk1.8.0_131/jre
+01-Apr-2024 15:53:17.541 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_131-b11
+01-Apr-2024 15:53:17.541 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+01-Apr-2024 15:53:17.541 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /home/cbjs/apache-tomcat-8.5.35
+01-Apr-2024 15:53:17.542 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /home/cbjs/apache-tomcat-8.5.35
+01-Apr-2024 15:53:17.542 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/home/cbjs/apache-tomcat-8.5.35/conf/logging.properties
+01-Apr-2024 15:53:17.542 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+01-Apr-2024 15:53:17.542 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+01-Apr-2024 15:53:17.542 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+01-Apr-2024 15:53:17.542 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n
+01-Apr-2024 15:53:17.542 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+01-Apr-2024 15:53:17.542 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/home/cbjs/apache-tomcat-8.5.35
+01-Apr-2024 15:53:17.542 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/home/cbjs/apache-tomcat-8.5.35
+01-Apr-2024 15:53:17.542 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/home/cbjs/apache-tomcat-8.5.35/temp
+01-Apr-2024 15:53:17.542 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib]
+01-Apr-2024 15:53:17.747 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+01-Apr-2024 15:53:17.761 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+01-Apr-2024 15:53:17.772 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+01-Apr-2024 15:53:17.774 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+01-Apr-2024 15:53:17.775 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 600 ms
+01-Apr-2024 15:53:17.804 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+01-Apr-2024 15:53:17.804 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.5.35
+01-Apr-2024 15:53:17.828 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 15:53:18.009 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 15:53:18.151 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [322] ms
+01-Apr-2024 15:53:18.154 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 15:53:18.205 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [51] ms
+01-Apr-2024 15:53:18.207 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 15:53:18.217 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 15:53:18.229 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [21] ms
+01-Apr-2024 15:53:18.229 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 15:53:18.235 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 15:53:18.247 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 15:53:18.248 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 15:53:18.257 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 15:53:18.265 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [17] ms
+01-Apr-2024 15:53:18.266 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 15:53:18.272 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 15:53:18.281 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [15] ms
+01-Apr-2024 15:53:18.282 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/docs]
+01-Apr-2024 15:53:18.291 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/docs] has finished in [9] ms
+01-Apr-2024 15:53:18.291 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/examples]
+01-Apr-2024 15:53:18.462 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/examples] has finished in [171] ms
+01-Apr-2024 15:53:18.462 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/ROOT]
+01-Apr-2024 15:53:18.472 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/ROOT] has finished in [10] ms
+01-Apr-2024 15:53:18.472 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/manager]
+01-Apr-2024 15:53:18.494 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/manager] has finished in [22] ms
+01-Apr-2024 15:53:18.494 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/host-manager]
+01-Apr-2024 15:53:18.509 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/host-manager] has finished in [15] ms
+01-Apr-2024 15:53:18.513 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+01-Apr-2024 15:53:18.523 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+01-Apr-2024 15:53:18.529 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 753 ms
+01-Apr-2024 18:10:59.277 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:10:59.316 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:10:59.322 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:10:59.328 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:10:59.334 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:10:59.339 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:10:59.348 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:10:59.367 WARNING [localhost-startStop-2] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:10:59.385 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [36] ms
+01-Apr-2024 18:10:59.385 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:10:59.426 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [41] ms
+01-Apr-2024 18:10:59.427 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:10:59.440 WARNING [localhost-startStop-2] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:10:59.452 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [25] ms
+01-Apr-2024 18:10:59.453 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:10:59.464 WARNING [localhost-startStop-2] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:10:59.479 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [26] ms
+01-Apr-2024 18:10:59.480 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:10:59.501 WARNING [localhost-startStop-2] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:10:59.515 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [35] ms
+01-Apr-2024 18:10:59.516 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:10:59.529 WARNING [localhost-startStop-2] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:10:59.546 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [30] ms
+01-Apr-2024 18:11:19.555 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:11:19.566 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:11:19.573 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:11:19.581 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:11:19.589 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:11:19.595 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:11:19.603 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:11:19.613 WARNING [localhost-startStop-3] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:11:19.622 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:11:19.622 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:11:19.655 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [32] ms
+01-Apr-2024 18:11:19.655 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:11:19.679 WARNING [localhost-startStop-3] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:11:19.690 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [35] ms
+01-Apr-2024 18:11:19.690 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:11:19.699 WARNING [localhost-startStop-3] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:11:19.709 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [19] ms
+01-Apr-2024 18:11:19.710 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:11:19.723 WARNING [localhost-startStop-3] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:11:19.734 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [23] ms
+01-Apr-2024 18:11:19.734 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:11:19.745 WARNING [localhost-startStop-3] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:11:19.753 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:11:49.758 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:11:49.767 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:11:49.774 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:11:49.780 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:11:49.786 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:11:49.791 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:11:49.799 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:11:49.808 WARNING [localhost-startStop-4] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:11:49.817 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [17] ms
+01-Apr-2024 18:11:49.817 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:11:49.865 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [48] ms
+01-Apr-2024 18:11:49.866 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:11:49.877 WARNING [localhost-startStop-4] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:11:49.884 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:11:49.885 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:11:49.893 WARNING [localhost-startStop-4] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:11:49.901 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [16] ms
+01-Apr-2024 18:11:49.901 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:11:49.913 WARNING [localhost-startStop-4] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:11:49.921 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [20] ms
+01-Apr-2024 18:11:49.922 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:11:49.931 WARNING [localhost-startStop-4] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:11:49.942 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [20] ms
+01-Apr-2024 18:11:59.943 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:11:59.954 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:11:59.963 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:11:59.971 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:11:59.982 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:11:59.989 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:11:59.998 INFO [localhost-startStop-5] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:12:00.007 WARNING [localhost-startStop-5] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:12:00.018 INFO [localhost-startStop-5] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [21] ms
+01-Apr-2024 18:12:00.019 INFO [localhost-startStop-5] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:12:00.058 INFO [localhost-startStop-5] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [39] ms
+01-Apr-2024 18:12:00.058 INFO [localhost-startStop-5] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:12:00.070 WARNING [localhost-startStop-5] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:12:00.083 INFO [localhost-startStop-5] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [25] ms
+01-Apr-2024 18:12:00.083 INFO [localhost-startStop-5] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:12:00.096 WARNING [localhost-startStop-5] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:12:00.109 INFO [localhost-startStop-5] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [26] ms
+01-Apr-2024 18:12:00.109 INFO [localhost-startStop-5] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:12:00.127 WARNING [localhost-startStop-5] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:12:00.138 INFO [localhost-startStop-5] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [29] ms
+01-Apr-2024 18:12:00.139 INFO [localhost-startStop-5] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:12:00.147 WARNING [localhost-startStop-5] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:12:00.154 INFO [localhost-startStop-5] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [15] ms
+01-Apr-2024 18:15:20.177 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:15:20.182 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:15:20.187 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:15:20.191 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:15:20.194 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:15:20.198 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:15:20.202 INFO [localhost-startStop-6] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:15:20.209 WARNING [localhost-startStop-6] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:15:20.217 INFO [localhost-startStop-6] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [16] ms
+01-Apr-2024 18:15:20.218 INFO [localhost-startStop-6] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:15:20.247 INFO [localhost-startStop-6] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [29] ms
+01-Apr-2024 18:15:20.248 INFO [localhost-startStop-6] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:15:20.257 WARNING [localhost-startStop-6] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:15:20.265 INFO [localhost-startStop-6] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [17] ms
+01-Apr-2024 18:15:20.266 INFO [localhost-startStop-6] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:15:20.272 WARNING [localhost-startStop-6] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:15:20.282 INFO [localhost-startStop-6] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [16] ms
+01-Apr-2024 18:15:20.283 INFO [localhost-startStop-6] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:15:20.296 WARNING [localhost-startStop-6] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:15:20.304 INFO [localhost-startStop-6] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [21] ms
+01-Apr-2024 18:15:20.304 INFO [localhost-startStop-6] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:15:20.311 WARNING [localhost-startStop-6] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:15:20.317 INFO [localhost-startStop-6] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [13] ms
+01-Apr-2024 18:16:40.325 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:16:40.330 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:16:40.334 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:16:40.338 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:16:40.342 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:16:40.347 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:16:40.353 INFO [localhost-startStop-7] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:16:40.361 WARNING [localhost-startStop-7] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:16:40.369 INFO [localhost-startStop-7] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [16] ms
+01-Apr-2024 18:16:40.370 INFO [localhost-startStop-7] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:16:40.416 INFO [localhost-startStop-7] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [46] ms
+01-Apr-2024 18:16:40.416 INFO [localhost-startStop-7] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:16:40.423 WARNING [localhost-startStop-7] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:16:40.430 INFO [localhost-startStop-7] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [14] ms
+01-Apr-2024 18:16:40.431 INFO [localhost-startStop-7] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:16:40.437 WARNING [localhost-startStop-7] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:16:40.445 INFO [localhost-startStop-7] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [14] ms
+01-Apr-2024 18:16:40.446 INFO [localhost-startStop-7] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:16:40.458 WARNING [localhost-startStop-7] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:16:40.468 INFO [localhost-startStop-7] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [22] ms
+01-Apr-2024 18:16:40.468 INFO [localhost-startStop-7] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:16:40.476 WARNING [localhost-startStop-7] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:16:40.484 INFO [localhost-startStop-7] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [15] ms
+01-Apr-2024 18:18:40.497 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:18:40.504 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:18:40.509 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:18:40.515 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:18:40.521 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:18:40.526 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:18:40.534 INFO [localhost-startStop-8] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:18:40.545 WARNING [localhost-startStop-8] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:18:40.555 INFO [localhost-startStop-8] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [22] ms
+01-Apr-2024 18:18:40.556 INFO [localhost-startStop-8] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:18:40.597 INFO [localhost-startStop-8] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [40] ms
+01-Apr-2024 18:18:40.597 INFO [localhost-startStop-8] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:18:40.606 WARNING [localhost-startStop-8] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:18:40.613 INFO [localhost-startStop-8] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [16] ms
+01-Apr-2024 18:18:40.614 INFO [localhost-startStop-8] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:18:40.622 WARNING [localhost-startStop-8] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:18:40.631 INFO [localhost-startStop-8] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [17] ms
+01-Apr-2024 18:18:40.632 INFO [localhost-startStop-8] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:18:40.647 WARNING [localhost-startStop-8] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:18:40.654 INFO [localhost-startStop-8] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [22] ms
+01-Apr-2024 18:18:40.654 INFO [localhost-startStop-8] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:18:40.661 WARNING [localhost-startStop-8] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:18:40.668 INFO [localhost-startStop-8] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [14] ms
+01-Apr-2024 18:22:50.695 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:22:50.702 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:22:50.708 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:22:50.714 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:22:50.721 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:22:50.726 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:22:50.733 INFO [localhost-startStop-9] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:22:50.742 WARNING [localhost-startStop-9] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:22:50.753 INFO [localhost-startStop-9] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [19] ms
+01-Apr-2024 18:22:50.753 INFO [localhost-startStop-9] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:22:50.788 INFO [localhost-startStop-9] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [35] ms
+01-Apr-2024 18:22:50.788 INFO [localhost-startStop-9] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:22:50.795 WARNING [localhost-startStop-9] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:22:50.802 INFO [localhost-startStop-9] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [14] ms
+01-Apr-2024 18:22:50.803 INFO [localhost-startStop-9] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:22:50.812 WARNING [localhost-startStop-9] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:22:50.825 INFO [localhost-startStop-9] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [22] ms
+01-Apr-2024 18:22:50.826 INFO [localhost-startStop-9] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:22:50.842 WARNING [localhost-startStop-9] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:22:50.852 INFO [localhost-startStop-9] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [25] ms
+01-Apr-2024 18:22:50.852 INFO [localhost-startStop-9] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:22:50.860 WARNING [localhost-startStop-9] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:22:50.867 INFO [localhost-startStop-9] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [15] ms
+01-Apr-2024 18:26:40.892 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:26:40.899 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:26:40.907 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:26:40.912 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:26:40.918 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:26:40.922 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:26:40.927 INFO [localhost-startStop-10] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:26:40.936 WARNING [localhost-startStop-10] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:26:40.945 INFO [localhost-startStop-10] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:26:40.946 INFO [localhost-startStop-10] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:26:40.985 INFO [localhost-startStop-10] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [38] ms
+01-Apr-2024 18:26:40.985 INFO [localhost-startStop-10] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:26:40.995 WARNING [localhost-startStop-10] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:26:41.003 INFO [localhost-startStop-10] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:26:41.004 INFO [localhost-startStop-10] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:26:41.013 WARNING [localhost-startStop-10] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:26:41.022 INFO [localhost-startStop-10] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:26:41.023 INFO [localhost-startStop-10] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:26:41.037 WARNING [localhost-startStop-10] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:26:41.048 INFO [localhost-startStop-10] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [25] ms
+01-Apr-2024 18:26:41.049 INFO [localhost-startStop-10] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:26:41.057 WARNING [localhost-startStop-10] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:26:41.066 INFO [localhost-startStop-10] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [17] ms
+01-Apr-2024 18:27:41.074 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:27:41.080 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:27:41.085 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:27:41.090 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:27:41.095 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:27:41.101 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:27:41.106 INFO [localhost-startStop-11] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:27:41.114 WARNING [localhost-startStop-11] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:27:41.123 INFO [localhost-startStop-11] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [17] ms
+01-Apr-2024 18:27:41.123 INFO [localhost-startStop-11] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:27:41.157 INFO [localhost-startStop-11] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [34] ms
+01-Apr-2024 18:27:41.158 INFO [localhost-startStop-11] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:27:41.167 WARNING [localhost-startStop-11] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:27:41.178 INFO [localhost-startStop-11] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [21] ms
+01-Apr-2024 18:27:41.178 INFO [localhost-startStop-11] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:27:41.185 WARNING [localhost-startStop-11] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:27:41.194 INFO [localhost-startStop-11] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [16] ms
+01-Apr-2024 18:27:41.195 INFO [localhost-startStop-11] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:27:41.211 WARNING [localhost-startStop-11] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:27:41.219 INFO [localhost-startStop-11] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [24] ms
+01-Apr-2024 18:27:41.220 INFO [localhost-startStop-11] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:27:41.228 WARNING [localhost-startStop-11] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:27:41.237 INFO [localhost-startStop-11] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [17] ms
+01-Apr-2024 18:30:51.258 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:30:51.264 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:30:51.270 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:30:51.276 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:30:51.281 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:30:51.286 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:30:51.293 INFO [localhost-startStop-12] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:30:51.302 WARNING [localhost-startStop-12] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:30:51.309 INFO [localhost-startStop-12] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [16] ms
+01-Apr-2024 18:30:51.310 INFO [localhost-startStop-12] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:30:51.343 INFO [localhost-startStop-12] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [33] ms
+01-Apr-2024 18:30:51.344 INFO [localhost-startStop-12] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:30:51.351 WARNING [localhost-startStop-12] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:30:51.358 INFO [localhost-startStop-12] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [14] ms
+01-Apr-2024 18:30:51.358 INFO [localhost-startStop-12] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:30:51.369 WARNING [localhost-startStop-12] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:30:51.379 INFO [localhost-startStop-12] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [21] ms
+01-Apr-2024 18:30:51.380 INFO [localhost-startStop-12] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:30:51.394 WARNING [localhost-startStop-12] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:30:51.400 INFO [localhost-startStop-12] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [20] ms
+01-Apr-2024 18:30:51.401 INFO [localhost-startStop-12] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:30:51.407 WARNING [localhost-startStop-12] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:30:51.414 INFO [localhost-startStop-12] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [13] ms
+01-Apr-2024 18:32:31.426 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:32:31.432 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:32:31.443 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:32:31.449 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:32:31.454 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:32:31.460 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:32:31.466 INFO [localhost-startStop-13] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:32:31.476 WARNING [localhost-startStop-13] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:32:31.487 INFO [localhost-startStop-13] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [21] ms
+01-Apr-2024 18:32:31.488 INFO [localhost-startStop-13] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:32:31.522 INFO [localhost-startStop-13] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [33] ms
+01-Apr-2024 18:32:31.522 INFO [localhost-startStop-13] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:32:31.532 WARNING [localhost-startStop-13] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:32:31.540 INFO [localhost-startStop-13] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:32:31.541 INFO [localhost-startStop-13] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:32:31.551 WARNING [localhost-startStop-13] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:32:31.559 INFO [localhost-startStop-13] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:32:31.560 INFO [localhost-startStop-13] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:32:31.574 WARNING [localhost-startStop-13] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:32:31.583 INFO [localhost-startStop-13] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [23] ms
+01-Apr-2024 18:32:31.583 INFO [localhost-startStop-13] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:32:31.592 WARNING [localhost-startStop-13] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:32:31.601 INFO [localhost-startStop-13] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:33:41.610 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:33:41.615 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:33:41.621 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:33:41.625 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:33:41.628 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:33:41.631 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:33:41.634 INFO [localhost-startStop-14] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:33:41.641 WARNING [localhost-startStop-14] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:33:41.650 INFO [localhost-startStop-14] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [16] ms
+01-Apr-2024 18:33:41.650 INFO [localhost-startStop-14] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:33:41.680 INFO [localhost-startStop-14] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [29] ms
+01-Apr-2024 18:33:41.680 INFO [localhost-startStop-14] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:33:41.686 WARNING [localhost-startStop-14] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:33:41.693 INFO [localhost-startStop-14] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [13] ms
+01-Apr-2024 18:33:41.694 INFO [localhost-startStop-14] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:33:41.701 WARNING [localhost-startStop-14] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:33:41.708 INFO [localhost-startStop-14] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [13] ms
+01-Apr-2024 18:33:41.708 INFO [localhost-startStop-14] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:33:41.718 WARNING [localhost-startStop-14] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:33:41.723 INFO [localhost-startStop-14] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [15] ms
+01-Apr-2024 18:33:41.724 INFO [localhost-startStop-14] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:33:41.730 WARNING [localhost-startStop-14] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:33:41.736 INFO [localhost-startStop-14] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [12] ms
+01-Apr-2024 18:34:51.743 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:34:51.748 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:34:51.754 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:34:51.760 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:34:51.766 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:34:51.773 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:34:51.780 INFO [localhost-startStop-15] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:34:51.789 WARNING [localhost-startStop-15] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:34:51.798 INFO [localhost-startStop-15] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:34:51.798 INFO [localhost-startStop-15] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:34:51.834 INFO [localhost-startStop-15] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [36] ms
+01-Apr-2024 18:34:51.834 INFO [localhost-startStop-15] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:34:51.842 WARNING [localhost-startStop-15] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:34:51.849 INFO [localhost-startStop-15] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [15] ms
+01-Apr-2024 18:34:51.850 INFO [localhost-startStop-15] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:34:51.860 WARNING [localhost-startStop-15] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:34:51.868 INFO [localhost-startStop-15] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:34:51.869 INFO [localhost-startStop-15] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:34:51.887 WARNING [localhost-startStop-15] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:34:51.899 INFO [localhost-startStop-15] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [30] ms
+01-Apr-2024 18:34:51.899 INFO [localhost-startStop-15] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:34:51.908 WARNING [localhost-startStop-15] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:34:51.916 INFO [localhost-startStop-15] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [16] ms
+01-Apr-2024 18:37:21.933 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:37:21.940 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:37:21.947 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:37:21.953 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:37:21.959 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:37:21.965 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:37:21.972 INFO [localhost-startStop-16] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:37:21.982 WARNING [localhost-startStop-16] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:37:21.990 INFO [localhost-startStop-16] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:37:21.991 INFO [localhost-startStop-16] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:37:22.024 INFO [localhost-startStop-16] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [33] ms
+01-Apr-2024 18:37:22.024 INFO [localhost-startStop-16] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:37:22.032 WARNING [localhost-startStop-16] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:37:22.039 INFO [localhost-startStop-16] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [15] ms
+01-Apr-2024 18:37:22.039 INFO [localhost-startStop-16] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:37:22.049 WARNING [localhost-startStop-16] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:37:22.058 INFO [localhost-startStop-16] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [19] ms
+01-Apr-2024 18:37:22.059 INFO [localhost-startStop-16] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:37:22.074 WARNING [localhost-startStop-16] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:37:22.084 INFO [localhost-startStop-16] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [25] ms
+01-Apr-2024 18:37:22.084 INFO [localhost-startStop-16] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:37:22.092 WARNING [localhost-startStop-16] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:37:22.100 INFO [localhost-startStop-16] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [15] ms
+01-Apr-2024 18:39:42.114 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:39:42.117 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:39:42.119 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:39:42.122 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:39:42.124 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:39:42.127 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:39:42.130 INFO [localhost-startStop-17] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:39:42.135 WARNING [localhost-startStop-17] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:39:42.140 INFO [localhost-startStop-17] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [10] ms
+01-Apr-2024 18:39:42.141 INFO [localhost-startStop-17] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:39:42.161 INFO [localhost-startStop-17] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [21] ms
+01-Apr-2024 18:39:42.162 INFO [localhost-startStop-17] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:39:42.167 WARNING [localhost-startStop-17] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:39:42.171 INFO [localhost-startStop-17] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [9] ms
+01-Apr-2024 18:39:42.171 INFO [localhost-startStop-17] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:39:42.177 WARNING [localhost-startStop-17] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:39:42.182 INFO [localhost-startStop-17] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [11] ms
+01-Apr-2024 18:39:42.183 INFO [localhost-startStop-17] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:39:42.191 WARNING [localhost-startStop-17] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:39:42.195 INFO [localhost-startStop-17] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [12] ms
+01-Apr-2024 18:39:42.195 INFO [localhost-startStop-17] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:39:42.199 WARNING [localhost-startStop-17] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:39:42.205 INFO [localhost-startStop-17] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [10] ms
+01-Apr-2024 18:40:32.208 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:40:32.212 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:40:32.216 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:40:32.218 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:40:32.220 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:40:32.222 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:40:32.225 INFO [localhost-startStop-18] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:40:32.230 WARNING [localhost-startStop-18] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:40:32.235 INFO [localhost-startStop-18] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [10] ms
+01-Apr-2024 18:40:32.235 INFO [localhost-startStop-18] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:40:32.256 INFO [localhost-startStop-18] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [21] ms
+01-Apr-2024 18:40:32.256 INFO [localhost-startStop-18] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:40:32.261 WARNING [localhost-startStop-18] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:40:32.266 INFO [localhost-startStop-18] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [10] ms
+01-Apr-2024 18:40:32.267 INFO [localhost-startStop-18] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:40:32.275 WARNING [localhost-startStop-18] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:40:32.284 INFO [localhost-startStop-18] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [16] ms
+01-Apr-2024 18:40:32.285 INFO [localhost-startStop-18] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:40:32.296 WARNING [localhost-startStop-18] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:40:32.301 INFO [localhost-startStop-18] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [16] ms
+01-Apr-2024 18:40:32.301 INFO [localhost-startStop-18] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:40:32.307 WARNING [localhost-startStop-18] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:40:32.313 INFO [localhost-startStop-18] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [11] ms
+01-Apr-2024 18:43:36.455 INFO [Thread-5] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+01-Apr-2024 18:43:36.464 INFO [Thread-5] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["ajp-nio-8009"]
+01-Apr-2024 18:43:36.471 INFO [Thread-5] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+01-Apr-2024 18:43:36.489 INFO [Thread-5] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+01-Apr-2024 18:43:36.492 INFO [Thread-5] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["ajp-nio-8009"]
+01-Apr-2024 18:43:36.495 INFO [Thread-5] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+01-Apr-2024 18:43:36.496 INFO [Thread-5] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["ajp-nio-8009"]
+01-Apr-2024 18:43:37.671 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.5.35
+01-Apr-2024 18:43:37.672 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Nov 3 2018 17:39:20 UTC
+01-Apr-2024 18:43:37.672 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.5.35.0
+01-Apr-2024 18:43:37.672 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+01-Apr-2024 18:43:37.672 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            6.5.11-linuxkit
+01-Apr-2024 18:43:37.673 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+01-Apr-2024 18:43:37.673 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /home/cbjs/jdk1.8.0_131/jre
+01-Apr-2024 18:43:37.673 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_131-b11
+01-Apr-2024 18:43:37.673 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+01-Apr-2024 18:43:37.673 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /home/cbjs/apache-tomcat-8.5.35
+01-Apr-2024 18:43:37.673 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /home/cbjs/apache-tomcat-8.5.35
+01-Apr-2024 18:43:37.673 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/home/cbjs/apache-tomcat-8.5.35/conf/logging.properties
+01-Apr-2024 18:43:37.673 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+01-Apr-2024 18:43:37.673 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+01-Apr-2024 18:43:37.674 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+01-Apr-2024 18:43:37.674 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n
+01-Apr-2024 18:43:37.674 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+01-Apr-2024 18:43:37.674 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/home/cbjs/apache-tomcat-8.5.35
+01-Apr-2024 18:43:37.674 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/home/cbjs/apache-tomcat-8.5.35
+01-Apr-2024 18:43:37.674 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/home/cbjs/apache-tomcat-8.5.35/temp
+01-Apr-2024 18:43:37.674 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib]
+01-Apr-2024 18:43:37.760 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+01-Apr-2024 18:43:37.771 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+01-Apr-2024 18:43:37.780 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+01-Apr-2024 18:43:37.781 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+01-Apr-2024 18:43:37.782 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 355 ms
+01-Apr-2024 18:43:37.808 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+01-Apr-2024 18:43:37.808 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.5.35
+01-Apr-2024 18:43:37.827 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:43:37.963 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:43:38.058 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [230] ms
+01-Apr-2024 18:43:38.059 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:43:38.099 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [41] ms
+01-Apr-2024 18:43:38.099 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:43:38.106 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:43:38.114 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [15] ms
+01-Apr-2024 18:43:38.114 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:43:38.121 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:43:38.129 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [15] ms
+01-Apr-2024 18:43:38.129 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:43:38.147 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:43:38.155 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [26] ms
+01-Apr-2024 18:43:38.156 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:43:38.162 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:43:38.170 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [14] ms
+01-Apr-2024 18:43:38.171 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/docs]
+01-Apr-2024 18:43:38.179 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/docs] has finished in [7] ms
+01-Apr-2024 18:43:38.179 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/examples]
+01-Apr-2024 18:43:38.320 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/examples] has finished in [140] ms
+01-Apr-2024 18:43:38.320 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/ROOT]
+01-Apr-2024 18:43:38.328 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/ROOT] has finished in [8] ms
+01-Apr-2024 18:43:38.328 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/manager]
+01-Apr-2024 18:43:38.347 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/manager] has finished in [19] ms
+01-Apr-2024 18:43:38.347 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/host-manager]
+01-Apr-2024 18:43:38.358 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/host-manager] has finished in [10] ms
+01-Apr-2024 18:43:38.360 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+01-Apr-2024 18:43:38.367 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+01-Apr-2024 18:43:38.369 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 586 ms
+01-Apr-2024 18:48:11.412 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.5.35
+01-Apr-2024 18:48:11.413 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Nov 3 2018 17:39:20 UTC
+01-Apr-2024 18:48:11.413 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.5.35.0
+01-Apr-2024 18:48:11.413 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+01-Apr-2024 18:48:11.413 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            6.5.11-linuxkit
+01-Apr-2024 18:48:11.413 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+01-Apr-2024 18:48:11.413 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /home/cbjs/jdk1.8.0_131/jre
+01-Apr-2024 18:48:11.413 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_131-b11
+01-Apr-2024 18:48:11.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+01-Apr-2024 18:48:11.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /home/cbjs/apache-tomcat-8.5.35
+01-Apr-2024 18:48:11.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /home/cbjs/apache-tomcat-8.5.35
+01-Apr-2024 18:48:11.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/home/cbjs/apache-tomcat-8.5.35/conf/logging.properties
+01-Apr-2024 18:48:11.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+01-Apr-2024 18:48:11.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+01-Apr-2024 18:48:11.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+01-Apr-2024 18:48:11.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=n
+01-Apr-2024 18:48:11.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+01-Apr-2024 18:48:11.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/home/cbjs/apache-tomcat-8.5.35
+01-Apr-2024 18:48:11.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/home/cbjs/apache-tomcat-8.5.35
+01-Apr-2024 18:48:11.415 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/home/cbjs/apache-tomcat-8.5.35/temp
+01-Apr-2024 18:48:11.415 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib]
+01-Apr-2024 18:48:11.504 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+01-Apr-2024 18:48:11.511 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+01-Apr-2024 18:48:11.519 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+01-Apr-2024 18:48:11.520 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+01-Apr-2024 18:48:11.521 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 398 ms
+01-Apr-2024 18:48:11.545 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+01-Apr-2024 18:48:11.545 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.5.35
+01-Apr-2024 18:48:11.561 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:48:11.714 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:48:11.825 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [263] ms
+01-Apr-2024 18:48:11.826 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:48:11.873 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [46] ms
+01-Apr-2024 18:48:11.873 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:48:11.881 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:48:11.891 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:48:11.891 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:48:11.899 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:48:11.909 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:48:11.910 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:48:11.920 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:48:11.929 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [19] ms
+01-Apr-2024 18:48:11.930 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:48:11.938 WARNING [localhost-startStop-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:48:11.948 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:48:11.950 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/docs]
+01-Apr-2024 18:48:11.960 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/docs] has finished in [10] ms
+01-Apr-2024 18:48:11.960 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/examples]
+01-Apr-2024 18:48:12.193 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/examples] has finished in [233] ms
+01-Apr-2024 18:48:12.193 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/ROOT]
+01-Apr-2024 18:48:12.203 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/ROOT] has finished in [10] ms
+01-Apr-2024 18:48:12.204 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/manager]
+01-Apr-2024 18:48:12.220 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/manager] has finished in [16] ms
+01-Apr-2024 18:48:12.220 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/host-manager]
+01-Apr-2024 18:48:12.232 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/home/cbjs/apache-tomcat-8.5.35/webapps/host-manager] has finished in [12] ms
+01-Apr-2024 18:48:12.235 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+01-Apr-2024 18:48:12.243 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+01-Apr-2024 18:48:12.244 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 723 ms
+01-Apr-2024 18:49:22.248 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:49:22.258 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:49:22.262 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:49:22.264 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:49:22.267 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:49:22.270 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:49:22.273 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:49:22.280 WARNING [localhost-startStop-2] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:49:22.288 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [15] ms
+01-Apr-2024 18:49:22.289 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:49:22.317 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [28] ms
+01-Apr-2024 18:49:22.318 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:49:22.324 WARNING [localhost-startStop-2] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:49:22.331 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [13] ms
+01-Apr-2024 18:49:22.331 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:49:22.348 WARNING [localhost-startStop-2] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:49:22.355 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [24] ms
+01-Apr-2024 18:49:22.356 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:49:22.366 WARNING [localhost-startStop-2] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:49:22.373 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [18] ms
+01-Apr-2024 18:49:22.374 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:49:22.379 WARNING [localhost-startStop-2] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:49:22.385 INFO [localhost-startStop-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [11] ms
+01-Apr-2024 18:52:32.411 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:52:32.418 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:52:32.427 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:52:32.434 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:52:32.449 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:52:32.460 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:52:32.465 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:52:32.474 WARNING [localhost-startStop-3] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:52:32.482 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [17] ms
+01-Apr-2024 18:52:32.482 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:52:32.504 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [22] ms
+01-Apr-2024 18:52:32.504 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:52:32.509 WARNING [localhost-startStop-3] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:52:32.513 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [9] ms
+01-Apr-2024 18:52:32.514 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:52:32.519 WARNING [localhost-startStop-3] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:52:32.524 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [10] ms
+01-Apr-2024 18:52:32.525 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:52:32.534 WARNING [localhost-startStop-3] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:52:32.542 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [17] ms
+01-Apr-2024 18:52:32.542 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:52:32.547 WARNING [localhost-startStop-3] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:52:32.553 INFO [localhost-startStop-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [10] ms
+01-Apr-2024 18:53:12.557 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv2-1.0-SNAPSHOT]
+01-Apr-2024 18:53:12.563 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv1-1.0-SNAPSHOT]
+01-Apr-2024 18:53:12.566 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/debug-java-web-1.0-SNAPSHOT]
+01-Apr-2024 18:53:12.571 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv4-1.0-SNAPSHOT]
+01-Apr-2024 18:53:12.576 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/deserialize-exploit-1.0-SNAPSHOT]
+01-Apr-2024 18:53:12.579 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/java-deserialize-lv3-1.0-SNAPSHOT]
+01-Apr-2024 18:53:12.583 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war]
+01-Apr-2024 18:53:12.590 WARNING [localhost-startStop-4] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:53:12.597 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv2-1.0-SNAPSHOT.war] has finished in [14] ms
+01-Apr-2024 18:53:12.597 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war]
+01-Apr-2024 18:53:12.622 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/debug-java-web-1.0-SNAPSHOT.war] has finished in [24] ms
+01-Apr-2024 18:53:12.622 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war]
+01-Apr-2024 18:53:12.628 WARNING [localhost-startStop-4] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:53:12.634 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/deserialize-exploit-1.0-SNAPSHOT.war] has finished in [11] ms
+01-Apr-2024 18:53:12.634 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war]
+01-Apr-2024 18:53:12.640 WARNING [localhost-startStop-4] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:53:12.647 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv3-1.0-SNAPSHOT.war] has finished in [13] ms
+01-Apr-2024 18:53:12.648 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war]
+01-Apr-2024 18:53:12.658 WARNING [localhost-startStop-4] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:53:12.664 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv4-1.0-SNAPSHOT.war] has finished in [16] ms
+01-Apr-2024 18:53:12.665 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war]
+01-Apr-2024 18:53:12.670 WARNING [localhost-startStop-4] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [4.0]. Default version will be used.
+01-Apr-2024 18:53:12.675 INFO [localhost-startStop-4] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/home/cbjs/apache-tomcat-8.5.35/webapps/java-deserialize-lv1-1.0-SNAPSHOT.war] has finished in [10] ms
+01-Apr-2024 19:46:53.212 INFO [Thread-5] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+01-Apr-2024 19:46:53.222 INFO [Thread-5] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["ajp-nio-8009"]
+01-Apr-2024 19:46:53.228 INFO [Thread-5] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+01-Apr-2024 19:46:53.253 INFO [Thread-5] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+01-Apr-2024 19:46:53.255 INFO [Thread-5] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["ajp-nio-8009"]
+01-Apr-2024 19:46:53.257 INFO [Thread-5] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+01-Apr-2024 19:46:53.258 INFO [Thread-5] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["ajp-nio-8009"]
